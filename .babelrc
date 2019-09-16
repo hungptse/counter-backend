@@ -1,0 +1,30 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "node": "current"
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./src"
+                ],
+                "alias": {
+                    "@routes": "./src/routes",
+                    "@controllers": "./src/controllers",
+                    "@middlewares": "./src/middlewares",
+                    "@core": "./src/core"
+                }
+            }
+        ]
+    ],
+    "sourceMaps": "inline",
+    "retainLines": true
+}
