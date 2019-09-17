@@ -1,7 +1,6 @@
-  
 import jwt from "jsonwebtoken";
 
-export function createJWT(userid, librarian = false) {
+export function createJWT(userid) {
     return jwt.sign(
         {
             user_id: userid,

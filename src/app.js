@@ -1,15 +1,16 @@
 const express = require("express");
 const compression = require("compression");
-const routes = require("@routes");
 const bodyParser = require("body-parser");
+import routes from "@routes";
 import {
     sentryMiddleware,
     morganMiddleware
 } from "@middlewares/logging.middleware";
-const app = express();
 const PORT = 3333;
 
+const app = express();
 const server = require("http").Server(app);
+
 async function main(app, server) {
     try {
         // checkEnvLoaded();
@@ -22,11 +23,11 @@ async function main(app, server) {
 
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
-
-        // app.use("/api/v1", routes);
-        app.listen(PORT, () => console.log(`API running at ${PORT}`))
+        app.use("/api", routes);
+        server.listen(PORT, () => console.log(`API running at ${PORT}`))
     } catch (error) {
         console.log(error);
+        process.exit(1);
     }
 }
 
