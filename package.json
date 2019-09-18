@@ -6,17 +6,20 @@
   "author": "HungPT",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/app.js",
+    "start": "node -r dotenv/config ./dist/app.js",
     "build": "babel src -d dist",
-    "start:dev": "nodemon --exec babel-node ./src/app.js",
+    "start:dev": "nodemon --exec \"yarn run build && yarn run start\"",
+    "start:prod": "yarn run build && yarn run start",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
   },
   "dependencies": {
     "@sentry/node": "5.6.2",
     "compression": "^1.7.4",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.9.1"
+    "morgan": "^1.9.1",
+    "source-map": "^0.7.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
