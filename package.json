@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node -r dotenv/config ./dist/app.js",
     "build": "babel src -d dist",
-    "start:dev": "nodemon --exec \"yarn run build && yarn run start\"",
-    "start:prod": "yarn run build && yarn run start",
+    "dev": "nodemon --exec \"yarn run build && yarn run start\"",
+    "prod": "yarn run build && yarn run start",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
   },
   "dependencies": {
