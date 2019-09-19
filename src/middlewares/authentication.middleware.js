@@ -9,7 +9,7 @@ export default async function authenticationMiddleware(req, res, next) {
         req["user_id"] = user_id;
         next();
     } catch (err) {
-        res.status(200).send(exceptionRes(401,"Token invaid!",err));
+        res.status(200).send(exceptionRes(401,"Token invaid!",err.message.toUpperCase()));
     }
 }
 

@@ -8,9 +8,6 @@
     "execMap": {
       "js": "node --harmony"
     },
-    "events": {
-      "restart": "npm run build"
-    },
     "watch": [
       "src/"
     ],
