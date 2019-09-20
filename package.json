@@ -6,9 +6,9 @@
   "author": "HungPT",
   "license": "MIT",
   "scripts": {
-    "start": "node -r dotenv/config ./dist/app.js",
+    "start": "node ./dist/app.js",
     "build": "babel src -d dist",
-    "dev": "nodemon --exec \"yarn run build && yarn run start\"",
+    "dev": "NODE_ENV=development nodemon --exec \"yarn run build && yarn run start\"",
     "prod": "yarn run build && yarn run start",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
   },
@@ -20,6 +20,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.0",
     "source-map": "^0.7.3"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-preset-env": "^1.7.0",
     "link-module-alias": "^1.2.0",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "sequelize-cli": "^5.5.1"
   }
 }

@@ -1,16 +1,16 @@
 import jwt from "jsonwebtoken";
-
+import Configuration from "@core/config";
 
 export function createJWT(userid) {
     return jwt.sign(
         {
             user_id: userid,
         },
-        process.env.JWT_SECRET_KEY
+        Configuration.JWT_SECRET_KEY
         , { expiresIn: "24h" }
     );
 }
 
 export function verifyJWT(token) {
-    return jwt.verify(token, process.env.JWT_SECRET_KEY);
+    return jwt.verify(token, Configuration.JWT_SECRET_KEY);
 }

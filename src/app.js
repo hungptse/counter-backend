@@ -7,14 +7,24 @@ import {
     sentryMiddleware,
     morganMiddleware
 } from "@middlewares/logging.middleware";
+import sequelize from "@models/index";
+import Configuration from "@core/config";
 const app = express();
 const server = require("http").Server(app);
 //load Config
 
 async function main(app, server) {
-    const PORT = process.env.PORT;
-    const HOST = process.env.HOST;
+    const PORT = Configuration.PORT;
+    const HOST = Configuration.HOST;
     try {
+        console.log(sequelize.models);
+        
+        sequelize.sync().then(() => {
+            console.log("DB sound good!");
+        }).catch((err) => {
+            console.log(err);
+            console.log("DB don't feel so good");
+        })
         // checkEnvLoaded();
         sentryMiddleware();
         app.use(morganMiddleware);

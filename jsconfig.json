@@ -6,7 +6,9 @@
             "@routes": ["./src/routes/*"],
             "@controllers/*": ["./src/controllers/*"],
             "@middlewares/*": ["./src/middlewares/*"],
-            "@core/*": [".src/core/*"]
+            "@core/*": ["./src/core/*"],
+            "@models/*": ["./src/models/*"],
+            "@config/*": ["./src/config/*"]
         }
     },
     "exclude": [
