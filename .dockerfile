@@ -25,7 +25,7 @@ ENV PATH /root/src/app/node_modules/.bin:$PATH
 
 COPY --from=builder /root/src/app/package.json /root/src/app/package.json
 COPY --from=builder /root/src/app/yarn.lock /root/src/app/yarn.lock
-COPY --from=builder /root/src/app/.env /root/src/app/.env
+COPY --from=builder /root/src/app/config /root/src/app/config
 
 RUN yarn install
 

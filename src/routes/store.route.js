@@ -1,17 +1,8 @@
-import authenticationRoutes from "@routes/authentication.route";
-import authenMiddleware from "@middlewares/authentication.middleware";
-import storeRoutes from "@routes/store.route";
 import express from "express";
-import os from "os";
+import store from "@controllers/store.controller";
 
 const router = express.Router();
 
-router.get("/", (_, res) =>
-    res.send({
-        message: "Server is up!",
-        uptime: `${os.uptime()} seconds`
-    })
-);
 /**
 * @swagger
 * /loginUser:
@@ -45,8 +36,8 @@ router.get("/", (_, res) =>
 *       403:
 *         description: Username and password don't match
 */
-router.use("/auth", authenticationRoutes);
-router.use("/store", authenMiddleware,storeRoutes);
+router.route("/").get(store.getAllStore);
+router.route("/:id").get(store.getStoreByID);
 
 
 export default router;

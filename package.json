@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./dist/app.js",
-    "build": "babel src -d dist",
+    "build": "babel src -d dist --copy-files",
     "dev": "NODE_ENV=development nodemon --exec \"yarn run build && yarn run start\"",
     "prod": "yarn run build && yarn run start",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
@@ -22,7 +22,9 @@
     "morgan": "^1.9.1",
     "mysql2": "^1.7.0",
     "sequelize": "^5.19.0",
-    "source-map": "^0.7.3"
+    "source-map": "^0.7.3",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

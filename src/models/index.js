@@ -1,6 +1,9 @@
 import { Sequelize, Model, DataTypes } from "sequelize";
 import Configuration from "@core/config";
-
+var fs = require('fs');
+var path = require('path');
+var basename = path.basename(__filename);
+var db = {};
 const sequelize = new Sequelize(Configuration.DB.NAME, Configuration.DB.USERNAME, Configuration.DB.PASSWORD, {
   dialect: 'mysql',
   port: Configuration.DB.PORT,
@@ -25,27 +28,21 @@ const sequelize = new Sequelize(Configuration.DB.NAME, Configuration.DB.USERNAME
   },
   sync: { force: true },
 });
-class Company extends Model { };
-Company.init({
-  name: { type: DataTypes.STRING },
-  address: { type: DataTypes.STRING },
-  is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true }
-}, {
-  underscored: true,
-  tableName : 'company',
-  modelName : 'company',
-  sequelize :  sequelize
-});
-class Store extends Model { };
-Store.init({
-  name: { type: DataTypes.STRING },
-  address: { type: DataTypes.STRING },
-  is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true }
-}, {
-  underscored: true,
-  tableName : 'store',
-  modelName : 'store',
-  sequelize :  sequelize
-});
 
-export default sequelize;
+fs
+  .readdirSync(__dirname)
+  .filter(file => {
+    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  })
+  .forEach(file => {
+    var model = sequelize['import'](path.join(__dirname, file));
+    db[model.name] = model;
+  });
+Object.keys(db).forEach(modelName => {
+  if (db[modelName].associate) {
+    db[modelName].associate(db);
+  }
+});
+db.sequelize = sequelize;
+module.exports = db;
+
