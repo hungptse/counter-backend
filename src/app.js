@@ -12,6 +12,7 @@ const server = require("http").Server(app);
 //load Config
 import swaggerJSDoc from 'swagger-jsdoc'
 const swaggerUi = require('swagger-ui-express');
+import sequelize from "@models";
 // const swaggerDocument = require('./swagger.json');
 
 
@@ -45,7 +46,9 @@ async function main(app, server) {
     const PORT = Configuration.PORT;
     const HOST = Configuration.HOST;
     try {
-        // console.log(sequelize);
+        // console.log(sequelize.sequelize.sync());
+        
+        // await sequelize.sequelize.sync();
 
         // sequelize.authenticate().then(() => {
         //     console.log("DB sound good!");

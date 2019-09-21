@@ -38,6 +38,9 @@ const router = express.Router();
 */
 router.route("/").get(store.getAllStore);
 router.route("/:id").get(store.getStoreByID);
+router.route("/:id").delete(store.deleteStore);
+router.route("/").post(store.createStore);
+
 
 
 export default router;

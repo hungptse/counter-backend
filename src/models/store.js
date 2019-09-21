@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         name: { type: DataTypes.STRING },
         address: { type: DataTypes.STRING },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
-        store_id: { type: DataTypes.INTEGER }
+        company_id: { type: DataTypes.INTEGER }
     }, {
         underscored: true,
         tableName: 'store',
