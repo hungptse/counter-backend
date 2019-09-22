@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build and Realease') { 
             steps {
-                sh 'sudo docker-compose up'
+                sh 'docker-compose up'
             }
         }
         // stage('Release') { 
