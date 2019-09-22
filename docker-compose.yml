@@ -6,12 +6,12 @@ services:
     environment:
       MYSQL_DATABASE: 'counter_sync'
       MYSQL_ROOT_PASSWORD: '1qaz2wsx'
-    volumes:
-      - ./storage/docker/mysql-data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password
     ports:
       - 3307:3306
     restart: on-failure
+    networks: 
+      - be-server
   app:
     container_name: counter_be_dev
     image: node:10.16.0-alpine
@@ -22,6 +22,9 @@ services:
       NODE_ENV: development
     ports:
       - 3333:3333
+    networks: 
+      - be-server
     command: yarn run dev
   
-    
+networks:
+  be-server:

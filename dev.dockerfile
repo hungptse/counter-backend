@@ -1,4 +1,4 @@
-FROM node:10.16.0
+FROM node:10.16.0-alpine
 
 RUN mkdir -p /root/src/node
 WORKDIR /root/src/node
