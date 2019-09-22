@@ -48,7 +48,7 @@ async function main(app, server) {
     try {
         // console.log(sequelize.sequelize.sync());
         
-        // await sequelize.sequelize.sync();
+        await sequelize.sequelize.sync();
 
         // sequelize.authenticate().then(() => {
         //     console.log("DB sound good!");
