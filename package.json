@@ -9,7 +9,7 @@
     "start": "node ./dist/app.js",
     "build": "babel src -d dist --copy-files",
     "dev": "NODE_ENV=development nodemon --exec \"yarn run build && yarn run start\"",
-    "prod": "yarn run build && yarn run start",
+    "prod": "NODE_ENV=production yarn run build && yarn run start",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
   },
   "dependencies": {
