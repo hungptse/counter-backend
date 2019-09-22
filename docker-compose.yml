@@ -24,7 +24,6 @@ services:
       - 3333:3333
     networks: 
       - be-server
-    command: yarn run dev
-  
+    command: yarn run prod
 networks:
   be-server:
