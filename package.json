@@ -6,10 +6,11 @@
   "author": "HungPT",
   "license": "MIT",
   "scripts": {
-    "start": "node ./dist/app.js",
+    "start:prod": "NODE_ENV=production node ./dist/app.js",
+    "start:dev": "NODE_ENV=development  node ./dist/app.js",
     "build": "babel src -d dist --copy-files",
-    "dev": "NODE_ENV=development nodemon --exec \"yarn run build && yarn run start\"",
-    "prod": "NODE_ENV=production yarn run build && yarn run start",
+    "dev": "nodemon --exec \"yarn run build && yarn run start:dev\"",
+    "prod": " yarn run build && yarn run start:prod",
     "format": "prettier --write --trailing-comma none --print-width 80 --tab-width 4 'src/**/*.js' 'src/*.js'"
   },
   "dependencies": {
