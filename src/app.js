@@ -1,6 +1,13 @@
 const express = require("express");
 const compression = require("compression");
 const bodyParser = require("body-parser");
+//load Config
+import swaggerJSDoc from 'swagger-jsdoc'
+const swaggerUi = require('swagger-ui-express');
+import sequelize from "@models";
+// const swaggerDocument = require('./swagger.json');
+const tls = require('tls');
+const fs = require("fs");
 import routes from "@routes";
 import {
     sentryMiddleware,
@@ -8,14 +15,25 @@ import {
 } from "@middlewares/logging.middleware";
 import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
-const app = express();
-const server = require("http").Server(app);
-//load Config
-import swaggerJSDoc from 'swagger-jsdoc'
-const swaggerUi = require('swagger-ui-express');
-import sequelize from "@models";
-// const swaggerDocument = require('./swagger.json');
 
+
+var privateKey = fs.readFileSync('privatekey.pem');
+var certificate = fs.readFileSync('certificate.pem');
+
+
+var credentials = tls.createSecureContext({
+    cert : certificate,
+    key : privateKey
+});
+const app = express();
+// const server = require("http").Server(app);
+const server = tls.createServer(credentials, (socket) => {
+    console.log('server connected',
+                socket.authorized ? 'authorized' : 'unauthorized');
+    socket.write('welcome!\n');
+    socket.setEncoding('utf8');
+    socket.pipe(socket);
+});
 
 const swaggerDefinition = {
     info: {
@@ -48,7 +66,7 @@ async function main(app, server) {
     const HOST = Configuration.HOST;
     try {
         // console.log(sequelize.sequelize.sync());
-        
+
         await sequelize.sequelize.sync();
 
         // sequelize.authenticate().then(() => {
@@ -59,7 +77,7 @@ async function main(app, server) {
         // })
         sentryMiddleware();
         app.use(morganMiddleware);
-        
+
         app.use(corsMiddleware);
         //compession gzip
         app.use(compression());
@@ -68,7 +86,9 @@ async function main(app, server) {
         app.use(bodyParser.json());
         app.use("/api", routes);
         app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-        server.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`))
+        console.log(server);
+        
+        server.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));
     } catch (error) {
         console.log(error);
         process.exit(1);
