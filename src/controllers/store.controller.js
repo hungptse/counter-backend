@@ -4,7 +4,10 @@ var db = require('@models');
 async function getAllStore(req, res) {
     const stores = await db.Store.findAll({ where: { is_deleted: false } });
     if (stores != null) {
-        res.status(200).send(messagesRes(200, "OK", stores));
+        res.status(200).send(messagesRes(200, "OK", {
+            items : stores,
+            total : stores.length
+        }));
     } else {
         res.status(200).send(messagesRes(400, "Not found"));
     }

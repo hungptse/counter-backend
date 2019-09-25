@@ -11,7 +11,7 @@ async function loginWithUsernamePassword(req,res) {
             token : createJWT(body.username)
         }));     
     } else {
-        res.status(403).send(messagesRes(403,"Permission denied! Invalid username and password"));
+        res.status(200).send(messagesRes(403,"Permission denied! Invalid username and password"));
     }
 }
 

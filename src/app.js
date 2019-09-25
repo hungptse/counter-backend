@@ -6,6 +6,7 @@ import {
     sentryMiddleware,
     morganMiddleware
 } from "@middlewares/logging.middleware";
+import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
 const app = express();
 const server = require("http").Server(app);
@@ -56,10 +57,10 @@ async function main(app, server) {
         //     console.log(err);
         //     console.log("DB don't feel so good");
         // })
-        // checkEnvLoaded();
         sentryMiddleware();
         app.use(morganMiddleware);
-
+        
+        app.use(corsMiddleware);
         //compession gzip
         app.use(compression());
 

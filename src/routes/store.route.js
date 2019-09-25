@@ -36,10 +36,11 @@ const router = express.Router();
 *       403:
 *         description: Username and password don't match
 */
-router.route("/").get(store.getAllStore);
-router.route("/:id").get(store.getStoreByID);
-router.route("/:id").delete(store.deleteStore);
-router.route("/").post(store.createStore);
+router.route("/").get(store.getAllStore).post(store.createStore);
+
+router.route("/:id").get(store.getStoreByID).delete(store.deleteStore);
+// router.route("/:id").delete(store.deleteStore);
+// router.route("/").post(store.createStore);
 
 
 
