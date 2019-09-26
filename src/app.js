@@ -15,15 +15,19 @@ import {
 } from "@middlewares/logging.middleware";
 import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
+var forceSsl = require('express-force-ssl');
 
 
 var privateKey = fs.readFileSync('privatekey.pem');
 var certificate = fs.readFileSync('certificate.pem');
+var ca = fs.readFileSync('certrequest.csr');
 
 
 
 const app = express();
 const server = require("https");
+const serverHttp = require("http");
+
 // const server = tls.createServer(credentials, (socket) => {
 //     console.log('server connected',
 //                 socket.authorized ? 'authorized' : 'unauthorized');
@@ -58,7 +62,7 @@ app.get('/swagger.json', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
 });
-async function main(app, server) {
+async function main(app, server, serverHttp) {
     const PORT = Configuration.PORT;
     const HOST = Configuration.HOST;
     try {
@@ -83,20 +87,22 @@ async function main(app, server) {
         app.use(bodyParser.json());
         app.use("/api", routes);
         app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
         const credentials = {
             cert : certificate,
-            key : privateKey
+            key : privateKey,
+            ca : ca
         }
+        const http = serverHttp.createServer(app);
+        app.use(forceSsl);
         const https = server.createServer(credentials,app);
-        console.log(credentials);
-        
-        console.log(https);
-        
-        https.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));
+   
+        http.listen(3333, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
+        https.listen(PORT, () => console.log(`API running at https://${HOST}:${PORT}/api`));
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
 }
 
-main(app, server);
+main(app, server, serverHttp);
