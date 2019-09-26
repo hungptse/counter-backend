@@ -21,19 +21,16 @@ var privateKey = fs.readFileSync('privatekey.pem');
 var certificate = fs.readFileSync('certificate.pem');
 
 
-var credentials = tls.createSecureContext({
-    cert : certificate,
-    key : privateKey
-});
+
 const app = express();
-// const server = require("http").Server(app);
-const server = tls.createServer(credentials, (socket) => {
-    console.log('server connected',
-                socket.authorized ? 'authorized' : 'unauthorized');
-    socket.write('welcome!\n');
-    socket.setEncoding('utf8');
-    socket.pipe(socket);
-});
+const server = require("https");
+// const server = tls.createServer(credentials, (socket) => {
+//     console.log('server connected',
+//                 socket.authorized ? 'authorized' : 'unauthorized');
+//     socket.write('welcome!\n');
+//     socket.setEncoding('utf8');
+//     socket.pipe(socket);
+// });
 
 const swaggerDefinition = {
     info: {
@@ -86,9 +83,16 @@ async function main(app, server) {
         app.use(bodyParser.json());
         app.use("/api", routes);
         app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-        console.log(server);
+        const credentials = {
+            cert : certificate,
+            key : privateKey
+        }
+        const https = server.createServer(credentials,app);
+        console.log(credentials);
         
-        server.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));
+        console.log(https);
+        
+        https.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));
     } catch (error) {
         console.log(error);
         process.exit(1);
