@@ -10,7 +10,7 @@ async function loginWithUsernamePassword(req,res) {
         res.status(200).send(messagesRes(200,"Login sucessfully",{
             token : createJWT(body.username)
         }));     
-    } else {
+    } else { 
         res.status(200).send(messagesRes(403,"Permission denied! Invalid username and password"));
     }
 }
