@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
         password: { type: DataTypes.STRING },
         gender : {type : DataTypes.BOOLEAN },
         phone_number : {type : DataTypes.STRING},
-        role_id : {type : DataTypes.INT},
+        role_id : {type : DataTypes.INTEGER},
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
     }, {
         underscored: true,

@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'counter_type',
         sequelize: sequelize
     });
-    return Counter;
+    return CounterType;
 };

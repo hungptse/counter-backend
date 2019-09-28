@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     var RolePermission = sequelize.define('RolePermission', {
-        role_id : {type : DataTypes.INT},
-        permission_id : {type : DataTypes.INT},
+        role_id : {type : DataTypes.INTEGER},
+        permission_id : {type : DataTypes.INTEGER},
         is_enable: { type: DataTypes.BOOLEAN, defaultValue: true },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     }, {
