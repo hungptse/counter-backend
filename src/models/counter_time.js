@@ -11,5 +11,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'counter_time',
         sequelize: sequelize
     });
-    return Counter;
+    return CounterTime;
 };

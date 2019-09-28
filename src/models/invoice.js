@@ -10,5 +10,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'invoice',
         sequelize: sequelize
     });
-    return Counter;
+    return Invoice;
 };
