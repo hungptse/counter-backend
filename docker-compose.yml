@@ -21,7 +21,7 @@ services:
     environment:
       NODE_ENV: development
     ports:
-      - 443:443
+      - 3000:3000
     networks: 
       - be-server
     command: yarn run prod

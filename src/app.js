@@ -6,8 +6,6 @@ import swaggerJSDoc from 'swagger-jsdoc'
 const swaggerUi = require('swagger-ui-express');
 import sequelize from "@models";
 // const swaggerDocument = require('./swagger.json');
-const tls = require('tls');
-const fs = require("fs");
 import routes from "@routes";
 import {
     sentryMiddleware,
@@ -15,18 +13,9 @@ import {
 } from "@middlewares/logging.middleware";
 import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
-var forceSsl = require('express-force-ssl');
-
-
-var privateKey = fs.readFileSync('privatekey.pem');
-var certificate = fs.readFileSync('certificate.pem');
-var ca = fs.readFileSync('certrequest.csr');
-
-
 
 const app = express();
 const server = require("https");
-const serverHttp = require("http");
 
 // const server = tls.createServer(credentials, (socket) => {
 //     console.log('server connected',
@@ -42,7 +31,7 @@ const swaggerDefinition = {
         version: '1.0.0',
         description: 'SWD',
     },
-    host: 'localhost:3333',
+    host: 'localhost:3000',
     basePath: '/',
     securityDefinitions: {
         bearerAuth: {
@@ -62,7 +51,7 @@ app.get('/swagger.json', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(swaggerSpec);
 });
-async function main(app, server, serverHttp) {
+async function main(app, server) {
     const PORT = Configuration.PORT;
     const HOST = Configuration.HOST;
     try {
@@ -87,22 +76,13 @@ async function main(app, server, serverHttp) {
         app.use(bodyParser.json());
         app.use("/api", routes);
         app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-        const credentials = {
-            cert : certificate,
-            key : privateKey,
-            ca : ca
-        }
-        const http = serverHttp.createServer(app);
-        app.use(forceSsl);
-        const https = server.createServer(credentials,app);
+        const http = server.createServer(app);
    
-        http.listen(3333, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
-        https.listen(PORT, () => console.log(`API running at https://${HOST}:${PORT}/api`));
+        http.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
 }
 
-main(app, server, serverHttp);
+main(app, server);
