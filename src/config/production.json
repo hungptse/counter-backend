@@ -1,6 +1,6 @@
 {
     "HOST" : "23.101.5.241",
-    "PORT" : 3333,
+    "PORT" : 3000,
     "JWT_SECRET_KEY" : "7C6B9F83564A9A2584BE7A841E943",
     "DB": {
         "USERNAME": "root",
