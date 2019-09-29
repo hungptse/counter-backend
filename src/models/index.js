@@ -3,7 +3,7 @@ import Configuration from "@core/config";
 var fs = require('fs');
 var path = require('path');
 var basename = path.basename(__filename);
-var db = {};
+var DB = {};
 const sequelize = new Sequelize(Configuration.DB.NAME, Configuration.DB.USERNAME, Configuration.DB.PASSWORD, {
   dialect: 'mysql',
   port: Configuration.DB.PORT,
@@ -36,13 +36,13 @@ fs
   })
   .forEach(file => {
     var model = sequelize['import'](path.join(__dirname, file));
-    db[model.name] = model;
+    DB[model.name] = model;
   });
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
+Object.keys(DB).forEach(modelName => {
+  if (DB[modelName].associate) {
+    DB[modelName].associate(DB);
   }
 });
-db.sequelize = sequelize;
-module.exports = db;
+DB.sequelize = sequelize;
+module.exports = DB;
 

@@ -1,6 +1,6 @@
 import { verifyJWT } from "@core/jwt";
 import { exceptionRes } from "@core/message";
-const db = require('@models');
+const DB = require('@models');
 
 export default async function authenticationMiddleware(req, res, next) {
     try {
@@ -31,7 +31,7 @@ function getToken(req) {
 }
 
 async function getUserPermission(userId) {
-    const user = await db.User.findOne({
+    const user = await DB.User.findOne({
         where: {
             username: userId
         }
@@ -39,11 +39,11 @@ async function getUserPermission(userId) {
     if (!user) {
         return [];
     }
-    const permissionIds = await db.RolePermission.findAll({ where: { role_id: user.role_id, is_deleted: false, is_enabled: true }, raw: true });
+    const permissionIds = await DB.RolePermission.findAll({ where: { role_id: user.role_id, is_deleted: false, is_enabled: true }, raw: true });
     if (permissionIds.length === 0) {
         return [];
     }
-    const permissions = await db.Permission.findAll({
+    const permissions = await DB.Permission.findAll({
         where: {
             id: permissionIds.map(p => p.id)
         },

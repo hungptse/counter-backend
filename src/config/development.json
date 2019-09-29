@@ -1,6 +1,6 @@
 {
     "HOST" : "localhost",
-    "PORT" : 3000,
+    "PORT" : 4000,
     "JWT_SECRET_KEY" : "7C6B9F83564A9A2584BE7A841E943",
     "DB": {
         "USERNAME": "root",
