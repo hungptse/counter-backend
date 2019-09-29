@@ -1,6 +1,6 @@
 import { hashSync, compareSync } from "bcryptjs";
 async function encryptPassword(password) {
-    console.log(await hashSync(password,10));    
+    return await hashSync(password,10);    
 }
 
 async function checkPassword(check,passwordHash) {
