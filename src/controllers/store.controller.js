@@ -1,15 +1,19 @@
 import errorHandler from "@core/error.handler";
 import { messagesRes } from "@core/message";
-var db = require('@models');
+import { PERMISSON_NAME, validatePermission } from '@core/permission';
+const db = require('@models');
 async function getAllStore(req, res) {
-    const stores = await db.Store.findAll({ where: { is_deleted: false } });
-    if (stores != null) {
-        res.status(200).send(messagesRes(200, "OK", {
-            items : stores,
-            total : stores.length
-        }));
-    } else {
-        res.status(200).send(messagesRes(400, "Not found"));
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.VIEW_USER);
+    if (isValid) {
+        const stores = await db.Store.findAll({ where: { is_deleted: false } });
+        if (stores != null) {
+            res.status(200).send(messagesRes(200, "OK", {
+                items: stores,
+                total: stores.length
+            }));
+        } else {
+            res.status(200).send(messagesRes(400, "Not found"));
+        }
     }
 }
 

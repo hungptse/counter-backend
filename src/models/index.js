@@ -26,7 +26,7 @@ const sequelize = new Sequelize(Configuration.DB.NAME, Configuration.DB.USERNAME
     idle: 30000,
     acquire: 60000,
   },
-  sync: { alter: true },
+  // sync: { alter: true },
 });
 
 fs
