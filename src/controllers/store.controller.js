@@ -1,7 +1,6 @@
 import errorHandler from "@core/error.handler";
 import { messagesRes } from "@core/message";
-import { PERMISSON_NAME } from '@core/permission';
-import { validatePermission } from '@core/request'
+import { PERMISSON_NAME, validatePermission } from '@core/permission';
 const db = require('@models');
 async function getAllStore(req, res) {
     const isValid = await validatePermission(req, res, PERMISSON_NAME.VIEW_USER);
