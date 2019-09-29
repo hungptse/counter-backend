@@ -6,9 +6,9 @@ pipeline {
                 sh 'yarn install'
             }
         }
-        stage('Remove old container') { 
+        stage('Docker rebuild') { 
             steps {
-                sh 'docker-compose rm -f'
+                sh 'docker-compose build'
             }
         }
         stage('Build and Realease') { 
