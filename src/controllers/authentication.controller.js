@@ -6,7 +6,7 @@ import { messagesRes } from "@core/message";
 async function loginWithUsernamePassword(req,res) {
     const body = req.body;
     const isMatch = await checkPassword(body.password,"$2b$10$WqbaCP2C6bVJknWVHG5MAOEWwFqMWI5lwl.y1iFf04KfwUY1Adm3C");
-    if (body.username === 'admin' && isMatch) {
+    if (body.username === 'hungpt' && isMatch) {
         res.status(200).send(messagesRes(200,"Login sucessfully",{
             token : createJWT(body.username)
         }));     
@@ -27,6 +27,26 @@ async function registerWithUsernamePassword(req,res) {
     // } else {
     //     res.status(403).send(messagesRes(403,"Permission denied! Invalid username and password"));
     // }
+}
+
+async function createRole(req,res) {
+    
+}
+
+async function updateRole(req,res) {
+    
+}
+
+async function setRolePremission(req,res) {
+    
+}
+
+async function updateRolePermission(req,res) {
+    
+}
+
+async function getPermission(req,res) {
+    
 }
 
 export default errorHandler({ loginWithUsernamePassword, registerWithUsernamePassword });

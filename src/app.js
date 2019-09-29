@@ -15,15 +15,7 @@ import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
 
 const app = express();
-const server = require("https");
-
-// const server = tls.createServer(credentials, (socket) => {
-//     console.log('server connected',
-//                 socket.authorized ? 'authorized' : 'unauthorized');
-//     socket.write('welcome!\n');
-//     socket.setEncoding('utf8');
-//     socket.pipe(socket);
-// });
+const server = require("http").Server(app);
 
 const swaggerDefinition = {
     info: {
@@ -57,7 +49,7 @@ async function main(app, server) {
     try {
         // console.log(sequelize.sequelize.sync());
 
-        await sequelize.sequelize.sync();
+        // await sequelize.sequelize.sync();
 
         // sequelize.authenticate().then(() => {
         //     console.log("DB sound good!");
@@ -76,13 +68,10 @@ async function main(app, server) {
         app.use(bodyParser.json());
         app.use("/api", routes);
         app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-        const http = server.createServer(app);
-   
-        http.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
+        server.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
     } catch (error) {
         console.log(error);
         process.exit(1);
     }
 }
-
 main(app, server);
