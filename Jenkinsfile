@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build and Realease') { 
             steps {
-                sh 'docker-compose up --force-recreate --no-deps counter_be_dev'
+                sh 'docker-compose up --force-recreate --no-deps app'
             }
         }
     }
