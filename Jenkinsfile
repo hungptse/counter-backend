@@ -6,14 +6,9 @@ pipeline {
                 sh 'yarn install'
             }
         }
-        stage('Docker rebuild') { 
-            steps {
-                sh 'docker-compose build'
-            }
-        }
         stage('Build and Realease') { 
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d --build'
             }
         }
     }
