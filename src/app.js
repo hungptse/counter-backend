@@ -47,7 +47,8 @@ async function main(app, server) {
     const PORT = Configuration.PORT;
     const HOST = Configuration.HOST;
     try {
-        // console.log(sequelize.sequelize.sync());
+        // await sequelize.sequelize.sync();
+
         if (process.env.NODE_ENV === 'production') {
             await sequelize.sequelize.sync();
         }
