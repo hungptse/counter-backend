@@ -18,7 +18,8 @@ async function sendNotificationToMobile(message, listDistination, data = {}) {
             data: data,
             title : 'Counter API',
             badge : 1,
-            icon : 'https://i.ibb.co/svWp515/icon.png'
+            icon : 'https://i.ibb.co/svWp515/icon.png',
+            // priority : 'high'
         })
     }
 

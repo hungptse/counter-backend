@@ -3,6 +3,7 @@ import { createJWT } from "@core/jwt";
 import { encryptPassword, checkPassword } from "@core/bcrypt";
 import { messagesRes, exceptionRes } from "@core/message";
 const DB = require("@models");
+
 async function loginWithUsernamePassword(req, res) {
     const body = req.body;
     const user = await DB.User.findOne({
