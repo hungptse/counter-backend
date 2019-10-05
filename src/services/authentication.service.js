@@ -9,7 +9,7 @@ async function loginWithUsernamePassword(req, res) {
 
 async function getUserPermission(userId) {
     const user = await DB.User.findOne({
-        attributes: ['username', 'name', 'id', 'gender', 'phone_number', 'role_id'],
+        attributes: ['username', 'name', 'id', 'gender', 'phone_number', 'role_id','address','email'],
         where: {
             username: userId
         }

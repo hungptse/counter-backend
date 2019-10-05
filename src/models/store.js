@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         address: { type: DataTypes.STRING },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
         company_id: { type: DataTypes.INTEGER },
+        city: { type: DataTypes.STRING },
     }, {
         underscored: true,
         tableName: 'store',

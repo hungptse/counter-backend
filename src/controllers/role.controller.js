@@ -20,9 +20,6 @@ async function getAllRole(req, res) {
     roles.forEach(role => {
         role["permissions"] = rolePermission.filter(rp => rp.role_id === role.id).map(rp => rp.permission_name);
     });
-
-    console.log(roles);
-    
     res.status(200).send(messagesRes(200, "OK", {
         roles: roles
     }));

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         gender : {type : DataTypes.BOOLEAN },
         phone_number : {type : DataTypes.STRING},
         role_id : {type : DataTypes.INTEGER},
+        email : {type : DataTypes.STRING},
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: false }
     }, {
         underscored: true,

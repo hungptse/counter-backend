@@ -5,8 +5,17 @@ const DB = require('@models');
 async function getAllStore(req, res) {
     const isValid = await validatePermission(req, res, PERMISSON_NAME.VIEW_USER);
     if (isValid) {
-        const stores = await DB.Store.findAll({ where: { is_deleted: false } });
+        const stores = await DB.Store.findAll({ where: { is_deleted: false }, raw : true });
         if (stores != null) {
+            const company = await DB.Company.findAll({
+                where: {
+                    id: stores.map(s => s.company_id).filter((value, index, self) => { return self.indexOf(value) === index; })
+                },
+                raw: true
+            });
+            stores.forEach(s => {
+                s["company_name"] = company.filter(c => c.id === s.company_id)[0].name;
+            })
             res.status(200).send(messagesRes(200, "OK", {
                 items: stores,
                 total: stores.length
