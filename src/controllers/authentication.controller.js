@@ -56,11 +56,11 @@ async function changePassword(req, res) {
                 if (isMatch) {
                     user.update({
                         password: await encryptPassword(body.new_password)
-                      }).then(() => {
-                          console.log("AAa");
-                          
+                    }).then(() => {
+                        console.log("AAa");
+
                         res.status(200).send(messagesRes(200, "Change password successfully"));
-                      })
+                    })
                 } else {
                     res.status(200).send(messagesRes(400, "Old password not match"));
                 }

@@ -11,11 +11,11 @@ async function getAllRole(req, res) {
         raw: true
     });
     const rolePermission = await DB.RolePermission.findAll({
-        where : {
-            is_deleted : false,
-            is_enabled : true,
+        where: {
+            is_deleted: false,
+            is_enabled: true,
         },
-        raw : true
+        raw: true
     });
     roles.forEach(role => {
         role["permissions"] = rolePermission.filter(rp => rp.role_id === role.id).map(rp => rp.permission_name);
@@ -28,7 +28,7 @@ async function getAllRole(req, res) {
 async function createRole(req, res) {
     const body = req.body;
     const namePermission = [];
-    
+
     await DB.Role.findOrCreate({
         where: {
             name: body.name,
@@ -38,8 +38,8 @@ async function createRole(req, res) {
         if (!isCreated) {
             res.status(200).send(messagesRes(400, "Role already existed in app"));
         } else {
-            Object.keys(PERMISSON_NAME).forEach(name => {
-                namePermission.push({ role_id: role.id , permission_name: name, is_deleted: false });
+            body.permissions.forEach(name => {
+                namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false, is_enabled: true });
             })
             await DB.RolePermission.bulkCreate(namePermission).then((result) => {
                 console.log(result);
@@ -49,9 +49,10 @@ async function createRole(req, res) {
     });
 }
 
-async function updateRoles(req,res) {
+async function updateRole(req, res) {
     const body = req.body;
-    
+    const namePermission = [];
+
     await DB.Role.findOne({
         where: {
             id: body.id,
@@ -60,15 +61,48 @@ async function updateRoles(req,res) {
         if (!role) {
             res.status(200).send(messagesRes(400, "Role not found"));
         } else {
-            await DB.Role.bulkCreate(namePermission).then((result) => {
-                console.log(result);
-            })
-            res.status(200).send(messagesRes(200, "Role created", role.get({ plain: true })));
+            await DB.RolePermission.update({
+                is_enabled: false,
+            }, {
+                where: {
+                    role_id: body.id
+                }
+            });
+            
+            body.permissions.forEach(name => {
+                namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false });
+            });
+            namePermission.forEach(async permission => {
+                await DB.RolePermission.findOrCreate({
+                    where: {
+                        role_id : permission.role_id,
+                        permission_name : permission.permission_name
+                    },
+                    defaults: permission
+                }).then(async ([p, isCreated]) => {
+                    console.log(p);
+                }).catch(err => {
+                    console.log(err);
+                });
+            });
+            await DB.RolePermission.update({
+                is_enabled: true,
+            }, {
+                where: {
+                    role_id: body.id,
+                    permission_name: body.permissions
+                }
+            }).then((res,err) => {
+                console.log(res);
+            });
+            let responseRole = role.get({ plain: true });
+            responseRole["permissions"] = body.permissions;
+            res.status(200).send(messagesRes(200, "Role updated",responseRole ));
         }
     });
 }
 
-async function deleteRole(req,res) {
+async function deleteRole(req, res) {
     const body = req.body;
     await DB.Role.findOne({
         where: {
@@ -80,10 +114,10 @@ async function deleteRole(req,res) {
         } else {
             role["is_deleted"] = true;
             role.save().then(() => {
-            res.status(200).send(messagesRes(200, "Deleted role"));
+                res.status(200).send(messagesRes(200, "Deleted role"));
             })
         }
     });
 }
 
-export default errorHandler({ getAllRole, createRole, deleteRole });
+export default errorHandler({ getAllRole, createRole, deleteRole, updateRole });
