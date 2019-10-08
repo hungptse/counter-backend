@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
     var CounterTime = sequelize.define('CounterTime', {
         value: { type: DataTypes.INTEGER, allowNull: false },
-        name: { type: DataTypes.STRING, allowNull: false },
+        created_by: { type: DataTypes.STRING, allowNull: false },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
         counter_id: { type: DataTypes.INTEGER },
     }, {
