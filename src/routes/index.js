@@ -23,13 +23,13 @@ router.get("/", (_, res) =>
 );
 
 router.use("/auth", authenticationRoutes);
-router.use("/store", authenMiddleware,storeRoutes);
-router.use("/notification", authenMiddleware,notiRoutes);
-router.use("/user", authenMiddleware,userRoutes);
-router.use("/role", authenMiddleware,roleRoutes);
-router.use("/permission", authenMiddleware,permissionRoutes);
-router.use("/counter",authenMiddleware,counterRoutes);
-router.use("/counter_time",authenMiddleware,counterTimeRoutes);
-router.use("/counter_type",authenMiddleware,counterTypeRoutes);
+router.use("/store", authenMiddleware, storeRoutes);
+router.use("/notification", authenMiddleware, notiRoutes);
+router.use("/user", authenMiddleware, userRoutes);
+router.use("/role", authenMiddleware, roleRoutes);
+router.use("/permission", authenMiddleware, permissionRoutes);
+router.use("/counter", authenMiddleware, counterRoutes);
+router.use("/counter_time", authenMiddleware, counterTimeRoutes);
+router.use("/counter_type", authenMiddleware, counterTypeRoutes);
 
 export default router;

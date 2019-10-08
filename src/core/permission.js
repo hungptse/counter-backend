@@ -100,6 +100,48 @@ export const PERMISSION = [{
       child: [],
     },
   ],
-}]
+},
+{
+  name: PERMISSON_NAME.MANAGE_COUNTER,
+  displayName: 'Manage Counter',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_COUNTER,
+      displayName: 'Get All Counter',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_COUNTER,
+      displayName: 'Create Counter',
+      child: [],
+    },
+    
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_COUNTER_TIME,
+  displayName: 'Manage Counter Time',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_COUNTER_TIME,
+      displayName: 'Get All Counter Time',
+      child: [],
+    },
+    
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_COUNTER_TYPE,
+  displayName: 'Manage Counter Type',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_COUNTER_TYPE,
+      displayName: 'Get All Counter Type',
+      child: [],
+    },
+    
+  ],
+},
+]
 
 export { validatePermission } 

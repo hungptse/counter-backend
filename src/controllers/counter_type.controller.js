@@ -17,7 +17,7 @@ async function getAllCounterType(req, res) {
         if (counterType.length > 0) {
             res.status(200).send(messagesRes(200, "OK", { counterType: counterType }));
         } else {
-            res.status(200).send(messagesRes(400,"Not found!"));
+            res.status(200).send(messagesRes(400, "Not found!"));
         }
     }
 }
