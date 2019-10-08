@@ -1,9 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     var Invoice = sequelize.define('Invoice', {
-        is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
-        counter_id: { type: DataTypes.INTEGER},
+        store_id: { type: DataTypes.INTEGER},
+        time: { type: DataTypes.DATE},
         type_id: { type: DataTypes.INTEGER },
+        price: { type: DataTypes.INTEGER },
+        is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
     }, {
         underscored: true,
         tableName: 'invoice',

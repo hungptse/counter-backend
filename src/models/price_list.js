@@ -1,7 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    var PriceList = sequelize.define('PriceDetail', {
-        store_id: { type: DataTypes.INTEGER },
+    var PriceList = sequelize.define('PriceList', {
         name: { type: DataTypes.STRING },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: false },
     }, {
