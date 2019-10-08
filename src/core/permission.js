@@ -1,12 +1,11 @@
 import { exceptionRes } from "./message";
 async function validatePermission(req, res, permissionName) {
-   if (req["permissions"].indexOf(permissionName) !== -1) {
-      res.status(200).send(
-         exceptionRes(403, "Permission Denied", "You don't have a permission")
-      );
-      return false;
-   }
-   return true;
+  if (req["permissions"].indexOf(permissionName) === -1) {
+    res.status(200).send(exceptionRes(403, "Permission Denied", "You don't have a permission"));
+    return false;
+  }
+  return true;
+
 }
 export const PERMISSON_NAME = {
    MANAGE_USER: "MANAGE_USER",
