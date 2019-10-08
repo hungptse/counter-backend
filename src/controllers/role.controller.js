@@ -64,19 +64,19 @@ async function updateRole(req, res) {
             await DB.RolePermission.update({
                 is_enabled: false,
             }, {
-                where: {
-                    role_id: body.id
-                }
-            });
-            
+                    where: {
+                        role_id: body.id
+                    }
+                });
+
             body.permissions.forEach(name => {
                 namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false });
             });
             namePermission.forEach(async permission => {
                 await DB.RolePermission.findOrCreate({
                     where: {
-                        role_id : permission.role_id,
-                        permission_name : permission.permission_name
+                        role_id: permission.role_id,
+                        permission_name: permission.permission_name
                     },
                     defaults: permission
                 }).then(async ([p, isCreated]) => {
@@ -88,16 +88,16 @@ async function updateRole(req, res) {
             await DB.RolePermission.update({
                 is_enabled: true,
             }, {
-                where: {
-                    role_id: body.id,
-                    permission_name: body.permissions
-                }
-            }).then((res,err) => {
-                console.log(res);
-            });
+                    where: {
+                        role_id: body.id,
+                        permission_name: body.permissions
+                    }
+                }).then((res, err) => {
+                    console.log(res);
+                });
             let responseRole = role.get({ plain: true });
             responseRole["permissions"] = body.permissions;
-            res.status(200).send(messagesRes(200, "Role updated",responseRole ));
+            res.status(200).send(messagesRes(200, "Role updated", responseRole));
         }
     });
 }
