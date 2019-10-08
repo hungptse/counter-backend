@@ -24,12 +24,32 @@ export const PERMISSON_NAME = {
   UPDATE_STORE: 'UPDATE_STORE',
   DELETE_STORE: 'DELETE_STORE',
 
+  MANAGE_PRICE_DETAIL: 'MANAGE_PRICE_DETAIL',
   GET_ALL_PRICE_DETAIL: 'GET_ALL_PRICE_DETAIL',
-  CREATE_PRICE_DETAIL: 'CREATE_PRICE_DETAIL'
+  CREATE_PRICE_DETAIL: 'CREATE_PRICE_DETAIL',
+
+  MANAGE_PRICE_LIST: 'MANAGE_PRICE_LIST',
+  GET_ALL_PRICE_LIST: 'GET_ALL_PRICE_LIST',
+  CREATE_PRICE_LIST: 'CREATE_PRICE_LIST',
+  GET_A_PRICE_LIST: 'GET_A_PRICE_LIST',
+
+  MANAGE_INVOICE: 'MANAGE_INVOICE',
+  GET_ALL_INVOICE: 'GET_ALL_INVOICE',
+  CREATE_INVOICE: 'CREATE_INVOICE',
+  GET_AN_INVOICE: 'GET_AN_INVOICE',
+
+  MANAGE_USER_STORE: 'MANAGE_USER_STORE',
+  GET_ALL_USER_STORE: 'GET_ALL_USER_STORE',
+  CREATE_USER_STORE: 'CREATE_USER_STORE',
+
+  MANAGE_ACTIVE_PRICE_LIST: 'MANAGE_ACTIVE_PRICE_LIST',
+  GET_ACTIVE_PRICE_LIST_FOR_STORE: 'GET_ACTIVE_PRICE_LIST_FOR_STORE',
+  CREATE_ACTIVE_PRICE_LIST: 'CREATE_ACTIVE_PRICE_LIST'
 }
 
 
-export const PERMISSION = [{
+export const PERMISSION = [
+  {
   name: PERMISSON_NAME.MANAGE_USER,
   displayName: 'Manage User',
   child: [
@@ -90,6 +110,93 @@ export const PERMISSION = [{
       displayName: 'Delete Store',
       child: [],
     },
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_PRICE_DETAIL,
+  displayName: 'Manage Price Detail',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_PRICE_DETAIL,
+      displayName: 'View Price Detail',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_PRICE_DETAIL,
+      displayName: 'Add Price Detail',
+      child: [],
+    },
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_PRICE_LIST,
+  displayName: 'Manage Price List',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_PRICE_LIST,
+      displayName: 'View all Price Lists',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.GET_A_PRICE_LIST,
+      displayName: 'View one Price List',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_PRICE_LIST,
+      displayName: 'Add Price List'
+    }
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_INVOICE,
+  displayName: 'Manage Invoice',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_INVOICE,
+      displayName: 'View all Invoices',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.GET_AN_INVOICE,
+      displayName: 'View one Invoice',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_INVOICE,
+      displayName: 'Add Invoice'
+    }
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_USER_STORE,
+  displayName: 'Manage User Store',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ALL_USER_STORE,
+      displayName: 'View all User Store',
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_USER_STORE,
+      displayName: 'Add User Store'
+    }
+  ],
+},
+{
+  name: PERMISSON_NAME.MANAGE_PRICE_LIST,
+  displayName: 'Manage Active Price List',
+  child: [
+    {
+      name: PERMISSON_NAME.GET_ACTIVE_PRICE_LIST_FOR_STORE,
+      displayName: "View Store's Active Price List",
+      child: [],
+    },
+    {
+      name: PERMISSON_NAME.CREATE_ACTIVE_PRICE_LIST,
+      displayName: 'Add Active Price List',
+      child: [],
+    }
   ],
 }]
 

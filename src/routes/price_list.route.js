@@ -3,6 +3,7 @@ import express from "express";
 
 const route = express.Router();
 
-route.route("/").get(priceListController.createPriceList);
+route.route("/").get(priceListController.getAllPriceList).post(priceListController.createPriceList);
+route.route("/:id").get(priceListController.getAPriceList);
 
 export default route;
