@@ -9,13 +9,12 @@ const DB = require('@models');
 async function getAllCounterTime(req, res) {
     const isValid = await validatePermission(req, res, PERMISSON_NAME.GET_ALL_COUNTER_TIME);
     if (isValid) {
-        const counterTime = DB.CounterTime.findAll({
+        const counterTime = await DB.CounterTime.findAll({
             where: {
                 is_deleted: false
             },
             raw: true
         });
-
         if (counterTime.length > 0) {
             res.status(200).send(messagesRes(200, "OK", { counterTime: counterTime }));
         } else {
