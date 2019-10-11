@@ -13,6 +13,8 @@ import activePriceListRoutes from "@routes/active_price_list.route";
 import counterRoutes from '@routes/counter.route';
 import counterTimeRoutes from "@routes/counter_time.route";
 import counterTypeRoutes from "@routes/counter_type.route";
+import companyRoutes from "@routes/company.route";
+
 
 import express from "express";
 import os from "os";
@@ -47,5 +49,6 @@ router.use("/permission", authenMiddleware, permissionRoutes);
 router.use("/counter", authenMiddleware, counterRoutes);
 router.use("/counter_time", authenMiddleware, counterTimeRoutes);
 router.use("/counter_type", authenMiddleware, counterTypeRoutes);
+router.use("/company", authenMiddleware, companyRoutes);
 
 export default router;
