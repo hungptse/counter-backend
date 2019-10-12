@@ -1,44 +1,91 @@
-import errorHandler from '@core/error.handler'
-import { messagesRes } from '@core/message'
-import { PERMISSON_NAME, validatePermission } from '@core/permission';
-const DB = require('@models');
+import errorHandler from "@core/error.handler";
+import { messagesRes } from "@core/message";
+import { PERMISSON_NAME, validatePermission } from "@core/permission";
+const DB = require("@models");
 
 async function getAllUserStore(req, res) {
-    const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_ALL_USER_STORE);
-    if (isValid) {
-        // code logic
-        const userStore = await DB.UserStore.findAll({
+   const isValid = await validatePermission(
+      req,
+      res,
+      PERMISSON_NAME.GET_ALL_USER_STORE
+   );
+   if (isValid) {
+      // code logic
+      const userStore = await DB.UserStore.findAll({
+         where: {
+            is_deleted: false
+         },
+         raw: true
+      });
+      if (userStore.length > 0) {
+         res.status(200).send(
+            messagesRes(200, "OK!", { user_store: userStore })
+         );
+      } else {
+         res.status(200).send(messagesRes(400, "Not found!"));
+      }
+   }
+}
+
+async function getUserStoreByUser(req, res) {
+   const isValid = await validatePermission(
+      req,
+      res,
+      PERMISSON_NAME.GET_USER_STORE_BY_USER
+   );
+   if (isValid) {
+      // code logic
+      const userStore = await DB.UserStore.findOne({
+         where: {
+            is_deleted: false,
+            user_id: req.user.id
+         },
+         raw: true
+      });
+      if (userStore) {
+         const store = await DB.Store.findOne({
             where: {
-                is_deleted: false
+               is_deleted: false,
+               id: userStore.store_id
             },
             raw: true
-        });
-        if (userStore.length > 0) {
-            res.status(200).send(messagesRes(200, "OK!", { price_list: userStore }));
-        } else {
-            res.status(200).send(messagesRes(400, "Not found!"));
-        }
-    }
+         });
+         userStore["store"] = store;
+         res.status(200).send(
+            messagesRes(200, "OK!", { user_store: userStore })
+         );
+      } else {
+         res.status(200).send(messagesRes(400, "Not found!"));
+      }
+   }
 }
 
 async function createUserStore(req, res) {
    const body = req.body;
    body["is_deleted"] = false;
-   const isValid = await validatePermission(req,res,PERMISSON_NAME.CREATE_USER_STORE);
+   const isValid = await validatePermission(
+      req,
+      res,
+      PERMISSON_NAME.CREATE_USER_STORE
+   );
    if (isValid) {
-       // code logic
-       await DB.UserStore.findOrCreate({
-          where: {
-             
-          },
-          defaults: body
-       }).then(([userStore, isCreated]) => {
-          if (!isCreated) {
-             res.status(200).send(messagesRes(400, "User Store already in app"));
-          } else {
-             res.status(200).send(messagesRes(200, "User Store created", userStore.get({ plain: true })));
-          }
-       })
+      // code logic
+      await DB.UserStore.findOrCreate({
+         where: {},
+         defaults: body
+      }).then(([userStore, isCreated]) => {
+         if (!isCreated) {
+            res.status(200).send(messagesRes(400, "User Store already in app"));
+         } else {
+            res.status(200).send(
+               messagesRes(
+                  200,
+                  "User Store created",
+                  userStore.get({ plain: true })
+               )
+            );
+         }
+      });
    }
 }
 
@@ -70,4 +117,8 @@ async function createUserStore(req, res) {
 //    }
 // }
 
-export default errorHandler({ getAllUserStore, createUserStore });
+export default errorHandler({
+   getAllUserStore,
+   createUserStore,
+   getUserStoreByUser
+});
