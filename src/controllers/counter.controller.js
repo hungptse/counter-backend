@@ -27,19 +27,33 @@ async function getAllCounter(req, res) {
 async function createCounter(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    await DB.Counter.findOrCreate({
-        where: {
-            type_id: body.type_id,
-            store_id: body.store_id
-        },
-        defaults: body
-    }).then(([counter, isCreated]) => {
-        if (!isCreated) {
-            res.status(200).send(messagesRes(400, "Not Create"));
-        } else {
-            res.status(200).send(messagesRes(200, "Counter created", counter.get({ plain: true })));
-        }
-    })
+    const isValid = await validatePermission(PERMISSON_NAME.CREATE_COUNTER);
+    if (isValid) {
+        await DB.Counter.findOrCreate({
+            where: {
+                type_id: body.type_id,
+                store_id: body.store_id
+            },
+            defaults: body
+        }).then(([counter, isCreated]) => {
+            if (!isCreated) {
+                res.status(200).send(messagesRes(400, "Not Create"));
+            } else {
+                res.status(200).send(messagesRes(200, "Counter created", counter.get({ plain: true })));
+            }
+        })
+    }
+
 }
 
-export default errorHandler({ getAllCounter, createCounter });
+async function getCounterByID(req, res) {
+    const id = req.params.id;
+    const counter = await DB.Counter.findByPk(id);
+    if (counter != null) {
+        res.status(200).send(messagesRes(200, "OK", counter));
+    } else {
+        res.status(200).send(messagesRes(400, "Not found!"));
+    }
+}
+
+export default errorHandler({ getAllCounter, createCounter, getCounterByID });

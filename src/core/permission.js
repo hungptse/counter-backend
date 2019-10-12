@@ -1,11 +1,12 @@
 import { exceptionRes } from "./message";
 async function validatePermission(req, res, permissionName) {
-  if (req["permissions"].indexOf(permissionName) !== -1) {
-    res.status(200).send(exceptionRes(403, "Permission Denied", "You don't have a permission"));
-    return false;
-  }
-  return true;
-
+   if (req["permissions"].indexOf(permissionName) !== -1) {
+      res.status(200).send(
+         exceptionRes(403, "Permission Denied", "You don't have a permission")
+      );
+      return false;
+   }
+   return true;
 }
 export const PERMISSON_NAME = {
    MANAGE_USER: "MANAGE_USER",
@@ -55,7 +56,12 @@ export const PERMISSON_NAME = {
    GET_ALL_COUNTER_TIME: "GET_ALL_COUNTER_TIME",
 
    MANAGE_COUNTER_TYPE: "MANAGE_COUNTER_TYPE",
-   GET_ALL_COUNTER_TYPE: "GET_ALL_COUNTER_TYPE"
+   GET_ALL_COUNTER_TYPE: "GET_ALL_COUNTER_TYPE",
+   CREATE_COUNTER_TYPE: "CREATE_COUNTER_TYPE",
+
+   MANAGE_COMPANY: "MANAGE_COMPANY",
+   GET_ALL_COMPANY: "GET_ALL_COMPANY",
+   CREATE_COMPANY: "CREATE_COMPANY"
 };
 
 export const PERMISSION = [
@@ -233,6 +239,11 @@ export const PERMISSION = [
             name: PERMISSON_NAME.GET_ALL_COUNTER_TIME,
             displayName: "Get All Counter Time",
             child: []
+         },
+         {
+            name: PERMISSON_NAME.CREATE_COUNTER_TIME,
+            displayName: "Create Counter Time",
+            child: []
          }
       ]
    },
@@ -243,6 +254,11 @@ export const PERMISSION = [
          {
             name: PERMISSON_NAME.GET_ALL_COUNTER_TYPE,
             displayName: "Get All Counter Type",
+            child: []
+         },
+         {
+            name: PERMISSON_NAME.CREATE_COUNTER_TYPE,
+            displayName: "Create Counter Type",
             child: []
          }
       ]

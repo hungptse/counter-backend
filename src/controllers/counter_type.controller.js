@@ -22,6 +22,7 @@ async function getAllCounterType(req, res) {
     }
 }
 
+
 async function createCounterType(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
@@ -40,6 +41,6 @@ async function createCounterType(req, res) {
             }
         })
     }
- }
+}
 
 export default errorHandler({ getAllCounterType, createCounterType });
