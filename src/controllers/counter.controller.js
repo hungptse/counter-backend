@@ -27,7 +27,7 @@ async function getAllCounter(req, res) {
 async function createCounter(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    const isValid = await validatePermission(PERMISSON_NAME.CREATE_COUNTER);
+    const isValid = await validatePermission(req,res,PERMISSON_NAME.CREATE_COUNTER);
     if (isValid) {
         await DB.Counter.findOrCreate({
             where: {
