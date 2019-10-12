@@ -74,24 +74,5 @@ async function changePassword(req, res) {
     }
 }
 
-async function createRole(req, res) {
-
-}
-
-async function updateRole(req, res) {
-
-}
-
-async function setRolePremission(req, res) {
-
-}
-
-async function updateRolePermission(req, res) {
-
-}
-
-async function getPermission(req, res) {
-
-}
 
 export default errorHandler({ loginWithUsernamePassword, registerWithUsernamePassword, changePassword });
