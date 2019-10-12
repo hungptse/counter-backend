@@ -1,5 +1,5 @@
 import { exceptionRes } from "./message";
-async function validatePermission(req, res, permissionName) {
+async function validatePermission(req, res, permissionName) {  
   if (req["permissions"].indexOf(permissionName) !== -1) {
     res.status(200).send(exceptionRes(403, "Permission Denied", "You don't have a permission"));
     return false;
@@ -12,6 +12,8 @@ export const PERMISSON_NAME = {
   VIEW_USER: "VIEW_USER",
   ADD_USER: "ADD_USER",
   DELETE_USER: "DELETE_USER",
+  GET_USER_LIST: "GET_USER_LIST",
+  UPDATE_USER: "UPDATE_USER",
 
   MANAGE_ROLE: "MANAGE_ROLE",
   ADD_ROLE: "ADD_ROLE",
@@ -82,6 +84,16 @@ export const PERMISSION = [
       {
         name: PERMISSON_NAME.DELETE_USER,
         displayName: "Delete User",
+        child: []
+      },
+      {
+        name: PERMISSON_NAME.GET_USER_LIST,
+        displayName: "Get User List",
+        child: []
+      },
+      {
+        name: PERMISSON_NAME.UPDATE_USER,
+        displayName: "Update User",
         child: []
       }
     ]
