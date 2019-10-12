@@ -42,7 +42,7 @@ async function createRole(req, res) {
                 namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false, is_enabled: true });
             })
             await DB.RolePermission.bulkCreate(namePermission).then((result) => {
-                console.log(result);
+                // console.log(result);
             })
             res.status(200).send(messagesRes(200, "Role created", role.get({ plain: true })));
         }
@@ -93,7 +93,7 @@ async function updateRole(req, res) {
                         permission_name: body.permissions
                     }
                 }).then((res, err) => {
-                    console.log(res);
+                    // console.log(res);
                 });
             let responseRole = role.get({ plain: true });
             responseRole["permissions"] = body.permissions;
