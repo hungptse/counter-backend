@@ -36,11 +36,13 @@ async function getAllCounterTime(req, res) {
             });
             counter.forEach(c => {
                 c["type_name"] = counterType.filter(t => t.id === c.type_id)[0].name;
-            })
-            counterTime.forEach(ct => {
-                ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
-                ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
-            })
+            });
+            if (counter.length != 0) {
+                counterTime.forEach(ct => {
+                    ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
+                    ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
+                }) 
+            }
         }
         if (counterTime.length > 0) {
             res.status(200).send(messagesRes(200, "OK", { items: counterTime, total: counterTime.length }));
