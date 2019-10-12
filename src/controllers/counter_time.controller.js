@@ -35,6 +35,7 @@ async function createCounterTime(req, res) {
             },
             defaults: body
         }).then(([counterTime, isCreated]) => {
+            
             if (!isCreated) {
                 res.status(200).send(messagesRes(400, "Not created!"));
             } else {

@@ -1,7 +1,7 @@
 import errorHandler from '@core/error.handler'
 import { messagesRes } from '@core/message'
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
-import {Op} from 'sequelize';
+import { Op } from 'sequelize';
 
 const DB = require('@models');
 
@@ -28,10 +28,10 @@ async function getAllCounter(req, res) {
 async function createCounter(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    const isValid = await validatePermission(req,res,PERMISSON_NAME.CREATE_COUNTER);
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER);
     if (isValid) {
         await DB.Counter.findOrCreate({
-            where: { 
+            where: {
                 type_id: body.type_id,
                 store_id: body.store_id
             },
