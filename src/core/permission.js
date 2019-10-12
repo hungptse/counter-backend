@@ -200,7 +200,7 @@ export const PERMISSION = [
       ]
    },
    {
-      name: PERMISSON_NAME.MANAGE_PRICE_LIST,
+      name: PERMISSON_NAME.MANAGE_ACTIVE_PRICE_LIST,
       displayName: "Manage Active Price List",
       child: [
          {
