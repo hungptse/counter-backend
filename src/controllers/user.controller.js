@@ -1,5 +1,7 @@
 import errorHandler from '@core/error.handler'
-import { messagesRes } from '@core/message'
+import { messagesRes, exceptionRes } from '@core/message'
+import { validate } from 'swagger-parser';
+import { Op } from 'sequelize';
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
 const DB = require('@models');
 
@@ -7,9 +9,9 @@ const DB = require('@models');
 async function getUserInfomation(req, res) {
     const permissions = req['permissions'];
     const user = req['user'];
-    res.status(200).send(messagesRes(200, "OK",{
-        granted_permission : permissions,
-        info : user
+    res.status(200).send(messagesRes(200, "OK", {
+        granted_permission: permissions,
+        info: user
     }));
 }
 
@@ -51,5 +53,48 @@ async function getUserByUsername(req,res) {
     }
     
 }
+async function updateUser(req, res) {
+    const body = req.body;
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.UPDATE_USER);
+    if (isValid) {
+        const user = await DB.User.findOne({
+            where: {
+                username: req["user_id"]
+            }
+        });
+        if (!user) {
+            res.status(200).send(exceptionRes(404, "User doesn't existed!"));
+        } else {
 
-export default errorHandler({ getUserInfomation, getUserByUsername });
+            user.update({
+                name: body.name,
+                address: body.address
+
+            }).then(() => {
+                res.status(200).send(messagesRes(200, "Update Successfully!", { user: user }));
+            })
+        }
+    }
+}
+
+async function addUser(req, res) {
+    const body = req.body;
+    body["is_deleted"] = false;
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.ADD_USER);
+    if (isValid) {
+        await DB.User.findOrCreate({
+            where: {
+                [Op.or]: [{ username: body.username }, { phone_number: body.phone_number }, { email: body.email }]
+            },
+            defaults: body
+        }).then(([user, isCreate]) => {
+            if (!isCreate) {
+                res.status(200).send(messagesRes(400, "User already exist!"));
+            } else {
+                res.status(200).send(messagesRes(200, "Add user successfully!", user.get({ plain: true })));
+            }
+        })
+    }
+}
+
+export default errorHandler({ getUserInfomation, getAllUser, getUserByUsername, addUser, updateUser });

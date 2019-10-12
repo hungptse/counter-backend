@@ -1,6 +1,7 @@
 import errorHandler from '@core/error.handler'
 import { messagesRes } from '@core/message'
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
+import { Op } from 'sequelize';
 
 const DB = require('@models');
 
