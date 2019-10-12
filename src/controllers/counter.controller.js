@@ -8,7 +8,7 @@ const DB = require('@models');
 async function getAllCounter(req, res) {
     const isValid = await validatePermission(req, res, PERMISSON_NAME.GET_ALL_COUNTER);
     if (isValid) {
-        const counter = DB.Counter.findAll({
+        const counter = await DB.Counter.findAll({
             where: {
                 is_deleted: false
             },
