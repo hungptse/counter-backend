@@ -35,7 +35,7 @@ async function getUserStoreByUser(req, res) {
    );
    if (isValid) {
       // code logic
-      const userStore = await DB.UserStore.findOne({
+      const userStore = await DB.UserStore.findAll({
          where: {
             is_deleted: false,
             user_id: req.user.id
