@@ -61,33 +61,35 @@ async function updateRole(req, res) {
         if (!role) {
             res.status(200).send(messagesRes(400, "Role not found"));
         } else {
-            await DB.RolePermission.update({
-                is_enabled: false,
-            }, {
+            role.name = body.name;
+            role.save().then(async () => {
+                await DB.RolePermission.update({
+                    is_enabled: false,
+                }, {
                     where: {
                         role_id: body.id
                     }
                 });
 
-            body.permissions.forEach(name => {
-                namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false });
-            });
-            namePermission.forEach(async permission => {
-                await DB.RolePermission.findOrCreate({
-                    where: {
-                        role_id: permission.role_id,
-                        permission_name: permission.permission_name
-                    },
-                    defaults: permission
-                }).then(async ([p, isCreated]) => {
-                    console.log(p);
-                }).catch(err => {
-                    console.log(err);
+                body.permissions.forEach(name => {
+                    namePermission.push({ role_id: role.id, permission_name: name, is_deleted: false });
                 });
-            });
-            await DB.RolePermission.update({
-                is_enabled: true,
-            }, {
+                namePermission.forEach(async permission => {
+                    await DB.RolePermission.findOrCreate({
+                        where: {
+                            role_id: permission.role_id,
+                            permission_name: permission.permission_name
+                        },
+                        defaults: permission
+                    }).then(async ([p, isCreated]) => {
+                        // console.log(p);
+                    }).catch(err => {
+                        // console.log(err);
+                    });
+                });
+                await DB.RolePermission.update({
+                    is_enabled: true,
+                }, {
                     where: {
                         role_id: body.id,
                         permission_name: body.permissions
@@ -95,9 +97,10 @@ async function updateRole(req, res) {
                 }).then((res, err) => {
                     // console.log(res);
                 });
-            let responseRole = role.get({ plain: true });
-            responseRole["permissions"] = body.permissions;
-            res.status(200).send(messagesRes(200, "Role updated", responseRole));
+                let responseRole = role.get({ plain: true });
+                responseRole["permissions"] = body.permissions;
+                res.status(200).send(messagesRes(200, "Role updated", responseRole));
+            })
         }
     });
 }

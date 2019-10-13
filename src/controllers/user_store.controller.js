@@ -28,6 +28,7 @@ async function getAllUserStore(req, res) {
 }
 
 async function getUserStoreByUser(req, res) {
+   const id = req.params.id;
    const isValid = await validatePermission(
       req,
       res,
@@ -35,22 +36,25 @@ async function getUserStoreByUser(req, res) {
    );
    if (isValid) {
       // code logic
-      const userStore = await DB.UserStore.findOne({
+      const userStore = await DB.UserStore.findAll({
          where: {
             is_deleted: false,
-            user_id: req.user.id
+            user_id: id !== undefined ? id : req.user.id
          },
          raw: true
       });
-      if (userStore) {
-         const store = await DB.Store.findOne({
+      if (userStore.length > 0) {
+         const stores = await DB.Store.findAll({
             where: {
                is_deleted: false,
-               id: userStore.store_id
+               id: userStore.map(us => us.store_id)
             },
             raw: true
          });
-         userStore["store"] = store;
+         userStore.forEach(us => {
+            us["stores"] = stores.filter(s => s.id === us.store_id)[0];
+         });
+         
          res.status(200).send(
             messagesRes(200, "OK!", { user_store: userStore })
          );
