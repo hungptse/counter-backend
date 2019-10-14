@@ -8,5 +8,6 @@
         "NAME": "counter_sync",
         "HOST": "localhost",
         "PORT" : 3306
-    }
+    },
+    "DEFAULT_PWD" : "1qaz2wsx"
 }
