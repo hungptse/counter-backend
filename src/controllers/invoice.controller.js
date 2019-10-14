@@ -23,23 +23,37 @@ async function getAllInvoice(req, res) {
 
 async function createInvoice(req, res) {
    const body = req.body;
-   body["is_deleted"] = false;
    const isValid = await validatePermission(req,res,PERMISSON_NAME.CREATE_INVOICE);
    if (isValid) {
        // code logic
-       await DB.Invoice.findOrCreate({
+       const invoice = await DB.Invoice.findAll({
           where: {
              store_id: body.store_id,
-             type_id: body.type_id,
+             type_id: body.type_id
           },
-          defaults: body
-       }).then(([invoice, isCreated]) => {
-          if (!isCreated) {
-             res.status(200).send(messagesRes(400, "Invoice already in app"));
-          } else {
-             res.status(200).send(messagesRes(200, "Invoice created", invoice.get({ plain: true })));
-          }
+          raw: true
+       });
+       let isExist = false
+       invoice.forEach(i => {
+         let existDate = new Date(i.time);
+         let invoiceDate = new Date(body.time);
+         if (existDate.getMonth() == invoiceDate.getMonth() && existDate.getFullYear() == existDate.getFullYear()) {
+            isExist = true;
+         }
        })
+       if (isExist) {
+         res.status(200).send(messagesRes(400, "Invoice already in app"));
+       } else {
+         body["is_deleted"] = false;
+         await DB.Invoice.create(body).then(invoice => {
+            if (invoice.length <= 0) {
+               res.status(200).send(messagesRes(400, "Create failed"));
+            } else {
+               res.status(200).send(messagesRes(200, "Invoice created", invoice.get({ plain: true })));
+            }
+         });
+       }
+      
    }
 }
 

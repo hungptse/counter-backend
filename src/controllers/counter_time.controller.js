@@ -33,16 +33,26 @@ async function getAllCounterTime(req, res) {
                     is_deleted: false
                 },
                 raw: true
-            });
-            counter.forEach(c => {
-                c["type_name"] = counterType.filter(t => t.id === c.type_id)[0].name;
-            });
-            if (counter.length != 0) {
-                counterTime.forEach(ct => {
-                    ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
-                    ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
-                }) 
-            }
+				});
+				const store = await DB.Store.findAll({
+					attributes: ['id', 'name', 'address', 'company_id'],
+					where: {
+						 is_deleted: false,
+					},
+					raw: true
+			  });
+            // get User name & Counter type name & Store info for Counter Time
+				//-- link Counter Type name & Store info to Counter
+				counter.forEach(c => {
+					c["type_name"] = counterType.filter(t => t.id === c.type_id)[0].name;
+					c["store"] = store.filter(s => s.id === c.store_id)[0];
+			  });
+				//-- link User, Counter and Store to Counter Time
+            counterTime.forEach(ct => {
+               ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
+					ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
+					ct["in_store"] = counter.filter(c => c.id === ct.counter_id)[0].store;
+            })             
         }
         if (counterTime.length > 0) {
             res.status(200).send(messagesRes(200, "OK", { items: counterTime, total: counterTime.length }));
