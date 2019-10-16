@@ -3,18 +3,31 @@ import { messagesRes } from '@core/message'
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
 const DB = require('@models');
 
-async function getAllPriceDetail(req, res) {
+async function getAPriceDetail(req, res) {
+    const body = req.body;
     const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_ALL_PRICE_DETAIL);
     if (isValid) {
         // code logic
-        const price_detail = await DB.PriceDetail.findAll({
+        const priceDetail = await DB.PriceDetail.findAll({
             where: {
-                is_deleted: false
+                is_deleted: false,
+                plist_id: body.plist_id
             },
             raw: true
         });
-        if (price_detail.length > 0) {
-            res.status(200).send(messagesRes(200, "OK!", { price_detail: price_detail }));
+        if (priceDetail.length > 0) {
+            const counterType = await DB.CounterType.findAll({
+                where: {
+                    is_deleted: false
+                },
+                raw: true
+            });
+            if (counterType) {
+                priceDetail.forEach(pd => {
+                    pd["type_name"] = counterType.filter(c => c.id === pd.type_id)[0].name;
+                })
+            }
+            res.status(200).send(messagesRes(200, "OK!", { price_details: priceDetail }));
         } else {
             res.status(200).send(messagesRes(400, "Not found!"));
         }
@@ -23,22 +36,32 @@ async function getAllPriceDetail(req, res) {
 
 async function createPriceDetail(req, res) {
     const body = req.body;
-    body["is_deleted"] = false;
     const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_PRICE_DETAIL);
     if (isValid) {
-        await DB.PriceDetail.findOrCreate({
-            where: {
+        const exist = await DB.PriceDetail.findAll({
+            where:{
                 plist_id: body.plist_id,
                 type_id: body.type_id
             },
-            defaults: body
-        }).then(async ([price_detail, isCreated]) => {
-            if (!isCreated) {
-                res.status(200).send(messagesRes(400, "Price detail already in app"));
-            } else {
-                res.status(200).send(messagesRes(200, "Price detail created", price_detail.get({ plain: true })));
-            }
-        })
+            raw: true
+        });
+        if (exist.length == 0) {
+            let listDetail = [];
+            body.data.forEach(detail => {
+                detail["is_deleted"] = false;
+                detail["plist_id"] = body["plist_id"];
+                detail["type_id"] =  body["type_id"];
+                listDetail.push(detail);
+            });
+            await DB.PriceDetail.bulkCreate(listDetail,{ returning: true }).then(result => {
+                res.status(201).send(messagesRes(201, "OK!", { price_details: result }));
+            }).catch(err => {
+                res.status(200).send(messagesRes(400, "Create failed!"));
+            });
+        } else {
+            res.status(200).send(messagesRes(400, "Data existed!"));
+        }
+        
     }
 }
 
@@ -64,4 +87,4 @@ async function deletePriceDetail(req, res) {
     // });
 }
 
-export default errorHandler({ getAllPriceDetail, createPriceDetail,  deletePriceDetail, updatePriceDetail });
+export default errorHandler({ getAPriceDetail, createPriceDetail,  deletePriceDetail, updatePriceDetail });
