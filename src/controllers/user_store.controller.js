@@ -27,6 +27,33 @@ async function getAllUserStore(req, res) {
    }
 }
 
+async function getUserStoreByUserID(req,res){
+    const isValid = await validatePermission(
+        req,
+        res,
+        PERMISSON_NAME.GET_USER_STORE_BY_USER_ID
+     );
+
+     if(isValid){
+         const userStore =await  DB.UserStore.findOne({
+             where: {
+                is_deleted: false,
+                 user_id: req.params.id
+             },
+             raw: true
+         });
+         if (userStore != null) {
+            res.status(200).send(
+               messagesRes(200, "OK!", { userStore: userStore })
+            );
+         } else {
+            res.status(200).send(messagesRes(400, "Not found!"));
+         }
+     }
+
+
+}
+
 async function getUserStoreByUser(req, res) {
    const id = req.params.id;
    const isValid = await validatePermission(
@@ -124,5 +151,6 @@ async function createUserStore(req, res) {
 export default errorHandler({
    getAllUserStore,
    createUserStore,
-   getUserStoreByUser
+   getUserStoreByUser,
+   getUserStoreByUserID
 });

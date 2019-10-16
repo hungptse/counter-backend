@@ -44,6 +44,7 @@ export const PERMISSON_NAME = {
    GET_ALL_USER_STORE: "GET_ALL_USER_STORE",
    CREATE_USER_STORE: "CREATE_USER_STORE",
    GET_USER_STORE_BY_USER: "GET_USER_STORE_BY_USER",
+   GET_USER_STORE_BY_USER_ID: "GET_USER_STORE_BY_USER_ID",
 
    MANAGE_ACTIVE_PRICE_LIST: "MANAGE_ACTIVE_PRICE_LIST",
    GET_ACTIVE_PRICE_LIST_FOR_STORE: "GET_ACTIVE_PRICE_LIST_FOR_STORE",
@@ -52,13 +53,17 @@ export const PERMISSON_NAME = {
    MANAGE_COUNTER: "MANAGE_COUNTER",
    GET_ALL_COUNTER: "GET_ALL_COUNTER",
    CREATE_COUNTER: "CREATE_COUNTER",
+   GET_COUNTER_BY_STORE_ID: "GET_COUNTER_BY_STORE_ID" ,
+   GET_COUNTER_BY_TYPE_ID: "GET_COUNTER_BY_TYPE_ID",
 
    MANAGE_COUNTER_TIME: "MANAGE_COUNTER_TIME",
    GET_ALL_COUNTER_TIME: "GET_ALL_COUNTER_TIME",
+   GET_COUNTER_TIME_BY_TIME: "GET_COUNTER_TIME_BY_TIME",
 
    MANAGE_COUNTER_TYPE: "MANAGE_COUNTER_TYPE",
    GET_ALL_COUNTER_TYPE: "GET_ALL_COUNTER_TYPE",
    CREATE_COUNTER_TYPE: "CREATE_COUNTER_TYPE",
+   
 
    MANAGE_COMPANY: "MANAGE_COMPANY",
    GET_ALL_COMPANY: "GET_ALL_COMPANY",
@@ -202,7 +207,13 @@ export const PERMISSION = [
          {
             name: PERMISSON_NAME.CREATE_USER_STORE,
             displayName: "Add User Store"
+         },
+         {
+            name: PERMISSON_NAME.GET_USER_STORE_BY_USER_ID,
+            displayName: "Add User Store"
          }
+
+
       ]
    },
    {
@@ -234,6 +245,16 @@ export const PERMISSION = [
             name: PERMISSON_NAME.CREATE_COUNTER,
             displayName: "Create Counter",
             child: []
+         },
+         {
+            name: PERMISSON_NAME.GET_COUNTER_BY_STORE_ID,
+            displayName: "Get Counter By Store ID",
+            child: []
+         },
+         {
+            name: PERMISSON_NAME.GET_COUNTER_BY_TYPE_ID,
+            displayName: "Get Counter By Type ID",
+            child: []
          }
       ]
    },
@@ -249,6 +270,11 @@ export const PERMISSION = [
          {
             name: PERMISSON_NAME.CREATE_COUNTER_TIME,
             displayName: "Create Counter Time",
+            child: []
+         },
+         {
+            name: PERMISSON_NAME.GET_COUNTER_TIME_BY_TIME,
+            displayName: "Get Counter Time By Time",
             child: []
          }
       ]

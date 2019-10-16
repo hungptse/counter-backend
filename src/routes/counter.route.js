@@ -7,4 +7,8 @@ router.route("/").get(counterController.getAllCounter).post(counterController.cr
 
 router.route("/:id").get(counterController.getCounterByID);
 
+router.route("/store_type").post(counterController.getCounterByStoreID);
+
+router.route("/type/:id").get(counterController.getCounterByStoreID);
+
 export default router;
