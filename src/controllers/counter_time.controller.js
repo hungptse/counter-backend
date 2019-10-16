@@ -1,7 +1,8 @@
 import errorHandler from '@core/error.handler'
 import { messagesRes } from '@core/message'
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
-
+import { Op } from 'sequelize'
+import moment from 'moment';
 
 const DB = require('@models');
 
@@ -33,26 +34,26 @@ async function getAllCounterTime(req, res) {
                     is_deleted: false
                 },
                 raw: true
-				});
-				const store = await DB.Store.findAll({
-					attributes: ['id', 'name', 'address', 'company_id'],
-					where: {
-						 is_deleted: false,
-					},
-					raw: true
-			  });
+            });
+            const store = await DB.Store.findAll({
+                attributes: ['id', 'name', 'address', 'company_id'],
+                where: {
+                    is_deleted: false,
+                },
+                raw: true
+            });
             // get User name & Counter type name & Store info for Counter Time
-				//-- link Counter Type name & Store info to Counter
-				counter.forEach(c => {
-					c["type_name"] = counterType.filter(t => t.id === c.type_id)[0].name;
-					c["store"] = store.filter(s => s.id === c.store_id)[0];
-			  });
-				//-- link User, Counter and Store to Counter Time
+            //-- link Counter Type name & Store info to Counter
+            counter.forEach(c => {
+                c["type_name"] = counterType.filter(t => t.id === c.type_id)[0].name;
+                c["store"] = store.filter(s => s.id === c.store_id)[0];
+            });
+            //-- link User, Counter and Store to Counter Time
             counterTime.forEach(ct => {
-               ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
-					ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
-					ct["in_store"] = counter.filter(c => c.id === ct.counter_id)[0].store;
-            })             
+                ct["counter_type"] = counter.filter(c => c.id === ct.counter_id)[0].type_name;
+                ct["created_by_name"] = user.filter(u => u.username === ct.created_by)[0].name;
+                ct["in_store"] = counter.filter(c => c.id === ct.counter_id)[0].store;
+            })
         }
         if (counterTime.length > 0) {
             res.status(200).send(messagesRes(200, "OK", { items: counterTime, total: counterTime.length }));
@@ -66,21 +67,37 @@ async function getAllCounterTime(req, res) {
 async function createCounterTime(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER_TIME)
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER_TIME);
     if (isValid) {
-        await DB.CounterTime.findOrCreate({
+        const isExsitedToday = await DB.Counter.findOne({
             where: {
-                counter_id: body["counter_id"]
+                is_deleted: false,
+                id: body["counter_id"],
+                store_id: body["store_id"],
+                created_at: {
+                    [Op.eq] : moment().toDate()
+                }
             },
-            defaults: body
-        }).then(([counterTime, isCreated]) => {
-            
-            if (!isCreated) {
-                res.status(200).send(messagesRes(400, "Not created!"));
-            } else {
-                res.status(200).send(messagesRes(200, "Counter Time Created", counterTime.get({ plain: true })));
-            }
-        })
+            raw: true
+        });
+        console.log(moment().toDate());
+        if (!isExsitedToday) {
+            await DB.CounterTime.findOrCreate({
+                where: {
+                    counter_id: body["counter_id"],
+                },
+                defaults: body
+            }).then(([counterTime, isCreated]) => {
+                if (!isCreated) {
+                    res.status(200).send(messagesRes(400, "Not created!"));
+                } else {
+                    res.status(200).send(messagesRes(200, "Counter Time Created", counterTime.get({ plain: true })));
+                }
+            })
+        } else {
+            res.status(200).send(messagesRes(400, "This counter already recored"));
+        }
+
     }
 
 
