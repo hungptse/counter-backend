@@ -37,9 +37,7 @@ const router = express.Router();
 *         description: Username and password don't match
 */
 router.route("/").get(store.getAllStore).post(store.createStore);
-
-router.route("/:id").get(store.getStoreByID).delete(store.deleteStore);
-// router.route("/:id").delete(store.deleteStore);
+router.route("/:id").get(store.getStoreByID).delete(store.deleteStore).put(store.updateStore);
 // router.route("/").post(store.createStore);
 
 

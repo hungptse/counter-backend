@@ -81,5 +81,34 @@ async function deleteStore(req, res) {
     }
 }
 
+async function updateStore(req, res) {
+    const id = req.params.id;
+    const body = req.body;
 
-export default errorHandler({ getAllStore, getStoreByID, createStore, deleteStore });
+    const company = await DB.Company.findOne({
+        where: {
+            id: body["company_id"]
+        },
+        raw: true
+    });
+    if (company) {
+        const store = await DB.Store.findByPk(id);
+        if (store) {
+            store["name"] = body["name"];
+            store["address"] = body["address"];
+            store["company_id"] = body["company_id"];
+            store.save().then(() => {
+                const result = store.get({ plain : true});
+                result["company_name"] = company.name;
+                console.log(result)
+                res.status(200).send(messagesRes(200, "Updated store", result));
+            })
+        } else {
+            res.status(200).send(messagesRes(400, "Not found"));
+        }
+    }
+
+}
+
+
+export default errorHandler({ getAllStore, getStoreByID, createStore, deleteStore, updateStore });
