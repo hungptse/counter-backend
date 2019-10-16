@@ -51,7 +51,8 @@ async function createStore(req, res) {
             where: {
                 name: body["name"],
                 company_id: body["company_id"],
-                address: body["address"]
+                address: body["address"],
+                city: body["city"]
             },
             defaults: body
         }).then(([store, isCreated]) => {
@@ -97,17 +98,16 @@ async function updateStore(req, res) {
             store["name"] = body["name"];
             store["address"] = body["address"];
             store["company_id"] = body["company_id"];
+            store["city"] = body["city"];
             store.save().then(() => {
                 const result = store.get({ plain : true});
                 result["company_name"] = company.name;
-                console.log(result)
                 res.status(200).send(messagesRes(200, "Updated store", result));
             })
         } else {
             res.status(200).send(messagesRes(400, "Not found"));
         }
     }
-
 }
 
 
