@@ -43,10 +43,10 @@ Object.keys(DB).forEach(modelName => {
     DB[modelName].associate(DB);
   }
 });
-Object.keys(DB).forEach(name => {
-  console.log(name);
+// Object.keys(DB).forEach(name => {
+//   console.log(name);
   
-})
+// })
 DB.sequelize = sequelize;
 module.exports = DB;
 

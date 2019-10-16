@@ -9,7 +9,7 @@ async function getActivePriceListForStore(req, res) {
     const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_ACTIVE_PRICE_LIST_FOR_STORE);
     if (isValid) {
         // code logic
-        const activePriceList = await DB.ActivePriceList.findAll({
+        const activePriceList = await DB.ActivePriceList.findOne({
             where: {
                 is_deleted: false,
                 store_id: body.store_id,
@@ -17,7 +17,7 @@ async function getActivePriceListForStore(req, res) {
             },
             raw: true
         });
-        if (activePriceList.length > 0) {
+        if (activePriceList) {
             res.status(200).send(messagesRes(200, "OK!", { active_price_list: activePriceList }));
         } else {
             res.status(200).send(messagesRes(400, "Not found!"));
