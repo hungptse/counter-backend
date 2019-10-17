@@ -15,7 +15,14 @@ async function getAllCounter(req, res) {
             },
             raw: true
         });
-        if (counter.length > 0) {
+        const store = await DB.Store.findAll({
+            where: {
+                is_deleted: false
+            },
+            raw: true
+        });
+        if (counter.length > 0 && store.length > 0) {
+            counter.forEach(c => c["store_name"] = store.filter(s => s.id == c.store_id)[0].name)
             res.status(200).send(messagesRes(200, "OK", { counter: counter }));
         } else {
             res.status(200).send(messagesRes(400, "Not found"));
@@ -68,19 +75,33 @@ async function createCounter(req, res) {
     body["is_deleted"] = false;
     const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER);
     if (isValid) {
-        await DB.Counter.findOrCreate({
+        const store = await DB.Store.findOne({
             where: {
-                type_id: body.type_id,
-                store_id: body.store_id
+                id: body.store_id,
+                is_deleted: false
             },
-            defaults: body
-        }).then(([counter, isCreated]) => {
-            if (!isCreated) {
-                res.status(200).send(messagesRes(400, "Not Create"));
-            } else {
-                res.status(200).send(messagesRes(200, "Counter created", counter.get({ plain: true })));
-            }
-        })
+            raw: true
+        });
+        if (store) {
+            await DB.Counter.findOrCreate({
+                where: {
+                    type_id: body.type_id,
+                    store_id: body.store_id
+                },
+                defaults: body
+            }).then(([counter, isCreated]) => {
+                if (!isCreated) {
+                    res.status(200).send(messagesRes(400, "Not Create"));
+                } else {
+                    const result = counter.get({ plain: true });
+                    result["store_name"] = store.name;
+                    res.status(200).send(messagesRes(200, "Counter created", result ));
+                }
+            })
+        } else {
+            res.status(200).send(messagesRes(400, "Store not found!"));
+        }
+
     }
 
 }

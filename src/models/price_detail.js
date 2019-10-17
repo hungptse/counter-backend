@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
     var PriceDetail = sequelize.define('PriceDetail', {
         plist_id: { type: DataTypes.INTEGER },
-        type_id: { type: DataTypes.STRING },
+        type_id: { type: DataTypes.INTEGER },
         voltage_level: { type: DataTypes.INTEGER },
         time_type: { type: DataTypes.STRING },
         price: { type: DataTypes.INTEGER },
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
         tableName: 'price_detail',
         modelName: 'price_detail',
-        sequelize: sequelize
+        sequelize: sequelize,
     });
     // var PriceDetail = sequelize.define('PriceDetail', {
     //     plist_id: { type: DataTypes.INTEGER },

@@ -110,7 +110,7 @@ async function updateUserRole(req, res) {
 async function addUser(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    body["password"] = encryptPassword(Configuration.DEFAULT_PWD);
+    body["password"] = await encryptPassword(Configuration.DEFAULT_PWD);
     const isValid = await validatePermission(req, res, PERMISSON_NAME.ADD_USER);
     if (isValid) {
         await DB.User.findOrCreate({

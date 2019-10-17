@@ -57,8 +57,6 @@ async function changePassword(req, res) {
                     user.update({
                         password: await encryptPassword(body.new_password)
                     }).then(() => {
-                        console.log("AAa");
-
                         res.status(200).send(messagesRes(200, "Change password successfully"));
                     })
                 } else {

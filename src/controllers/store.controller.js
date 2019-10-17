@@ -5,7 +5,7 @@ const DB = require('@models');
 async function getAllStore(req, res) {
     const isValid = await validatePermission(req, res, PERMISSON_NAME.VIEW_USER);
     if (isValid) {
-        const stores = await DB.Store.findAll({ where: { is_deleted: false }, raw : true });
+        const stores = await DB.Store.findAll({ where: { is_deleted: false }, raw: true });
         if (stores != null) {
             const company = await DB.Company.findAll({
                 where: {
@@ -39,19 +39,34 @@ async function getStoreByID(req, res) {
 async function createStore(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
-    await DB.Store.findOrCreate({
+
+    const company = await DB.Company.findOne({
         where: {
-            name: body["name"],
-            company_id: body["company_id"]
+            id: body["company_id"]
         },
-        defaults: body
-    }).then(([store, isCreated]) => {
-        if (!isCreated) {
-            res.status(200).send(messagesRes(400, "Store already existed in company"));
-        } else {
-            res.status(200).send(messagesRes(400, "Store created", store.get({ plain: true })));
-        }
+        raw: true
     });
+    if (company) {
+        await DB.Store.findOrCreate({
+            where: {
+                name: body["name"],
+                company_id: body["company_id"],
+                address: body["address"],
+                city: body["city"]
+            },
+            defaults: body
+        }).then(([store, isCreated]) => {
+            if (!isCreated) {
+                res.status(200).send(messagesRes(400, "Store already existed in company"));
+            } else {
+                const result = store.get({ plain: true });
+                result["company_name"] = company.name;
+                res.status(201).send(messagesRes(200, "Store created", result));
+            }
+        });
+    } else {
+        res.status(200).send(messagesRes(400, "Company invalid"));
+    }
 }
 
 async function deleteStore(req, res) {
@@ -67,5 +82,33 @@ async function deleteStore(req, res) {
     }
 }
 
+async function updateStore(req, res) {
+    const id = req.params.id;
+    const body = req.body;
 
-export default errorHandler({ getAllStore, getStoreByID, createStore, deleteStore });
+    const company = await DB.Company.findOne({
+        where: {
+            id: body["company_id"]
+        },
+        raw: true
+    });
+    if (company) {
+        const store = await DB.Store.findByPk(id);
+        if (store) {
+            store["name"] = body["name"];
+            store["address"] = body["address"];
+            store["company_id"] = body["company_id"];
+            store["city"] = body["city"];
+            store.save().then(() => {
+                const result = store.get({ plain : true});
+                result["company_name"] = company.name;
+                res.status(200).send(messagesRes(200, "Updated store", result));
+            })
+        } else {
+            res.status(200).send(messagesRes(400, "Not found"));
+        }
+    }
+}
+
+
+export default errorHandler({ getAllStore, getStoreByID, createStore, deleteStore, updateStore });

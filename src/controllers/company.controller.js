@@ -46,7 +46,23 @@ async function createCompany(req, res) {
             }
         });
     }
+}
+
+async function updateCompany(req, res) {
+    const id = req.params.id;
+    const body = req.body;
+
+    const company = await DB.Company.findByPk(id);
+    if (company) {
+        company["name"] = body["name"];
+        company["address"] = body["address"];
+        company.save().then(() => {
+            res.status(200).send(messagesRes(200, "Updated company", company));
+        })
+    } else {
+        res.status(200).send(messagesRes(400, "Not found"));
+    }
 
 }
 
-export default errorHandler({ getAllCompany, createCompany });
+export default errorHandler({ getAllCompany, createCompany , updateCompany });
