@@ -71,6 +71,7 @@ async function getLastInvoiceOfStore(req, res) {
    }
 }
 
+
 async function createInvoice(req, res) {
    const body = req.body;
    const isValid = await validatePermission(
@@ -102,6 +103,7 @@ async function createInvoice(req, res) {
          res.status(200).send(messagesRes(400, "Invoice already in app"));
       } else {
          body["time"] = new Date();
+         body["snap_image"] = "";
          body["is_deleted"] = false;
          await DB.Invoice.create(body).then(invoice => {
             if (invoice.length <= 0) {

@@ -1,7 +1,7 @@
 import errorHandler from '@core/error.handler'
 import { messagesRes } from '@core/message'
 import { PERMISSON_NAME, validatePermission } from '@core/permission';
-
+import { Op } from 'sequelize'
 
 const DB = require('@models');
 
@@ -68,9 +68,13 @@ async function createCounterTime(req, res) {
     body["is_deleted"] = false;
     const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER_TIME)
     if (isValid) {
+        const today = new Date().toISOString().slice(0,10);
         await DB.CounterTime.findOrCreate({
             where: {
-                counter_id: body["counter_id"]
+                counter_id: body["counter_id"],
+                created_at: {
+                    [Op.contains] : today
+                }
             },
             defaults: body
         }).then(([counterTime, isCreated]) => {
