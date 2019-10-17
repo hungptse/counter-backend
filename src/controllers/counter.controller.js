@@ -15,7 +15,14 @@ async function getAllCounter(req, res) {
             },
             raw: true
         });
-        if (counter.length > 0) {
+        const store = await DB.Store.findAll({
+            where: {
+                is_deleted: false
+            },
+            raw: true
+        });
+        if (counter.length > 0 && store.length > 0) {
+            counter.forEach(c => c["store_name"] = store.filter(s => s.id == c.store_id)[0].name)
             res.status(200).send(messagesRes(200, "OK", { counter: counter }));
         } else {
             res.status(200).send(messagesRes(400, "Not found"));

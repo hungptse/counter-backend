@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
         time: { type: DataTypes.DATE},
         type_id: { type: DataTypes.INTEGER },
         price: { type: DataTypes.INTEGER },
+        snap_image: { type: DataTypes.STRING },
         is_deleted: { type: DataTypes.BOOLEAN, defaultValue: true },
     }, {
         underscored: true,
