@@ -31,25 +31,77 @@ async function getAllCounter(req, res) {
 
 }
 
+async function getCounterByStoreID(req,res){
+    const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_COUNTER_BY_STORE_ID);
+    const body = req.body;
+    body["is_deleted"] = false;
+    if(isValid){
+        const counter = await DB.Counter.findOne({
+            where: {
+                store_id : body["store_id"],
+                type_id: body["type_id"],
+                is_deleted: false
+            },
+            raw: true
+        })
+        if(counter != null){
+            res.status(200).send(messagesRes(200,"OK", {counter:counter}));
+        } else{
+            res.status(200).send(messagesRes(400,"Not found!"));
+        }
+    }
+}
+
+async function getCounterByTypeID(req,res){
+    const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_COUNTER_BY_TYPE_ID);
+    if(isValid){
+        const counter = await DB.Counter.findOne({
+            where: {
+                type_id: req.params.id
+            },
+            raw: true
+        })
+        if(counter != null){
+            res.status(200).send(messagesRes(200,"OK", {counter:counter}));
+        }else{
+            res.status(200).send(messagesRes(400,"Not found!"));
+        }
+    }
+}
+
 
 async function createCounter(req, res) {
     const body = req.body;
     body["is_deleted"] = false;
     const isValid = await validatePermission(req, res, PERMISSON_NAME.CREATE_COUNTER);
     if (isValid) {
-        await DB.Counter.findOrCreate({
+        const store = await DB.Store.findOne({
             where: {
-                type_id: body.type_id,
-                store_id: body.store_id
+                id: body.store_id,
+                is_deleted: false
             },
-            defaults: body
-        }).then(([counter, isCreated]) => {
-            if (!isCreated) {
-                res.status(200).send(messagesRes(400, "Not Create"));
-            } else {
-                res.status(200).send(messagesRes(200, "Counter created", counter.get({ plain: true })));
-            }
-        })
+            raw: true
+        });
+        if (store) {
+            await DB.Counter.findOrCreate({
+                where: {
+                    type_id: body.type_id,
+                    store_id: body.store_id
+                },
+                defaults: body
+            }).then(([counter, isCreated]) => {
+                if (!isCreated) {
+                    res.status(200).send(messagesRes(400, "Not Create"));
+                } else {
+                    const result = counter.get({ plain: true });
+                    result["store_name"] = store.name;
+                    res.status(200).send(messagesRes(200, "Counter created", result ));
+                }
+            })
+        } else {
+            res.status(200).send(messagesRes(400, "Store not found!"));
+        }
+
     }
 
 }
@@ -64,4 +116,4 @@ async function getCounterByID(req, res) {
     }
 }
 
-export default errorHandler({ getAllCounter, createCounter, getCounterByID });
+export default errorHandler({ getAllCounter, createCounter, getCounterByID, getCounterByStoreID, getCounterByTypeID});

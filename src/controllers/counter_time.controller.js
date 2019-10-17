@@ -115,4 +115,23 @@ async function createCounterTime(req, res) {
    }
 }
 
-export default errorHandler({ getAllCounterTime, createCounterTime });
+async function getCounterTimeByTime(req, res) {
+    const isValid = await validatePermission(req, res, PERMISSON_NAME.GET_COUNTER_TIME_BY_TIME);
+    if (isValid) {
+        const counterTime = await DB.CounterTime.max(
+            'value', {
+                where : {
+                    counter_id : req.params.id
+                }
+            }
+        ).then(max => {
+            if (max > 0) {
+                res.status(200).send(messagesRes(200, "OK", max));
+            } else {
+                res.status(200).send(messagesRes(400, "Not found"));
+            }
+        })
+    }
+}
+
+export default errorHandler({ getAllCounterTime, createCounterTime, getCounterTimeByTime });
