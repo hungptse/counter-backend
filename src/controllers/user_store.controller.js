@@ -52,11 +52,10 @@ async function getUserStoreByUser(req, res) {
             raw: true
          });
          userStore.forEach(us => {
-            us["stores"] = stores.filter(s => s.id === us.store_id)[0];
+            us["store"] = stores.filter(s => s.id === us.store_id)[0];
          });
-         
          res.status(200).send(
-            messagesRes(200, "OK!", { user_store: userStore })
+            messagesRes(200, "OK!", { user_store: userStore[0] })
          );
       } else {
          res.status(200).send(messagesRes(400, "Not found!"));
@@ -75,7 +74,10 @@ async function createUserStore(req, res) {
    if (isValid) {
       // code logic
       await DB.UserStore.findOrCreate({
-         where: {},
+         where: {
+            user_id : body["user_id"],
+            store_id : body["store_id"]
+         },
          defaults: body
       }).then(([userStore, isCreated]) => {
          if (!isCreated) {
