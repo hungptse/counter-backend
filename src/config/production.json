@@ -8,5 +8,6 @@
         "NAME": "counter_sync",
         "HOST": "counter_be_db",
         "PORT" : 3306
-    }
+    },
+    "DEFAULT_PWD" : "fptuhcm"
 }
