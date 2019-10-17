@@ -64,4 +64,26 @@ async function getCounterByID(req, res) {
     }
 }
 
+
+async function getCounterByStoreID(req,res){
+    const isValid = await validatePermission(req,res,PERMISSON_NAME.GET_COUNTER_BY_STORE_ID);
+    const body = req.body;
+    body["is_deleted"] = false;
+    if(isValid){
+        const counter = await DB.Counter.findOne({
+            where: {
+                store_id : body["store_id"],
+                type_id: body["type_id"],
+                is_deleted: false
+            },
+            raw: true
+        })
+        if(counter != null){
+            res.status(200).send(messagesRes(200,"OK", {counter:counter}));
+        } else{
+            res.status(200).send(messagesRes(400,"Not found!"));
+        }
+    }
+}
+
 export default errorHandler({ getAllCounter, createCounter, getCounterByID });
