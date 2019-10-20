@@ -38,14 +38,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -77,15 +75,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
+            "bearerAuth": []
           }
         ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "",
@@ -109,14 +104,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -180,14 +173,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -221,14 +212,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -292,14 +281,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -333,14 +320,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -406,14 +391,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -477,14 +460,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -550,14 +531,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -591,14 +570,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -632,14 +609,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -705,14 +680,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -776,14 +749,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -849,14 +820,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -952,14 +921,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -1023,14 +990,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -1160,14 +1125,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -1199,14 +1162,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
@@ -1269,14 +1230,12 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
+        "security": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "required": false,
-            "default": "Bearer {token}",
-            "type": "string"
-          },
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
           {
             "name": "Body",
             "in": "body",
