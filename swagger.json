@@ -8,7 +8,14 @@
   },
   "host": "swd-backend.hangnoidiachauau.com",
   "basePath": "/api",
-  "securityDefinitions": {},
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "scheme": "Bearer",
+      "in": "header"
+    }
+  },
   "schemes": [
     "https"
   ],
