@@ -112,7 +112,7 @@ async function createUserStore(req, res) {
          } else {
             res.status(200).send(
                messagesRes(
-                  200,
+                  201,
                   "User Store created",
                   userStore.get({ plain: true })
                )

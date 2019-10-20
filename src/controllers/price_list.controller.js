@@ -36,7 +36,7 @@ async function createPriceList(req, res) {
           if (!isCreated) {
              res.status(200).send(messagesRes(400, "Price list already in app"));
           } else {
-             res.status(200).send(messagesRes(200, "Price list created", price_list.get({ plain: true })));
+             res.status(200).send(messagesRes(201, "Price list created", price_list.get({ plain: true })));
           }
        })
    }
@@ -57,7 +57,7 @@ async function getAPriceList(req, res) {
           if (priceList) {
             res.status(200).send(messagesRes(200, "OK!", priceList));
           } else {
-            res.status(200).send(messagesRes(400, "Price list not found"));
+            res.status(200).send(messagesRes(404, "Price list not found"));
           }
          //  if (!isCreated) {
          //     res.status(200).send(messagesRes(400, "Price list already in app"));

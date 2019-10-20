@@ -122,7 +122,7 @@ async function addUser(req, res) {
             if (!isCreate) {
                 res.status(200).send(messagesRes(400, "User already exist!"));
             } else {
-                res.status(200).send(messagesRes(200, "Add user successfully!", user.get({ plain: true })));
+                res.status(200).send(messagesRes(201, "Add user successfully!", user.get({ plain: true })));
             }
         })
     }

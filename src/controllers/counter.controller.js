@@ -95,11 +95,11 @@ async function createCounter(req, res) {
                 } else {
                     const result = counter.get({ plain: true });
                     result["store_name"] = store.name;
-                    res.status(200).send(messagesRes(200, "Counter created", result ));
+                    res.status(200).send(messagesRes(201, "Counter created", result ));
                 }
             })
         } else {
-            res.status(200).send(messagesRes(400, "Store not found!"));
+            res.status(200).send(messagesRes(404, "Store not found!"));
         }
 
     }
