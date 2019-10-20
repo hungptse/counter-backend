@@ -47,13 +47,6 @@
             "schema": {
               "$ref": "#/definitions/CreateCounterTimeRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -110,13 +103,6 @@
             "schema": {
               "$ref": "#/definitions/CreateCounterTypeRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -173,13 +159,6 @@
             "schema": {
               "$ref": "#/definitions/StoreandTypeRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -214,13 +193,6 @@
             "schema": {
               "$ref": "#/definitions/CreateCounterRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -277,13 +249,6 @@
             "schema": {
               "$ref": "#/definitions/CreateActivePriceListRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -318,13 +283,6 @@
             "schema": {
               "$ref": "#/definitions/GetActivePriceListforStoreRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -383,13 +341,6 @@
             "schema": {
               "$ref": "#/definitions/CreateUserStoreRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -446,13 +397,6 @@
             "schema": {
               "$ref": "#/definitions/CreatePriceListRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -511,13 +455,6 @@
             "schema": {
               "$ref": "#/definitions/CreatePriceDetailRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -552,13 +489,6 @@
             "schema": {
               "$ref": "#/definitions/GetAPriceDetailRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -593,13 +523,6 @@
             "schema": {
               "$ref": "#/definitions/GetUserbyUsernameRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -658,13 +581,6 @@
             "schema": {
               "$ref": "#/definitions/ChangePasswordRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -721,13 +637,6 @@
             "schema": {
               "$ref": "#/definitions/CreateRoleRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -786,13 +695,6 @@
             "schema": {
               "$ref": "#/definitions/GetLastInvoiceOfStoreRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -873,13 +775,6 @@
             "schema": {
               "$ref": "#/definitions/CreateInvoiceRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -936,13 +831,6 @@
             "schema": {
               "$ref": "#/definitions/CreateStoreRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -1049,13 +937,6 @@
             "schema": {
               "$ref": "#/definitions/SetDeviceIDRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -1088,13 +969,6 @@
             "schema": {
               "$ref": "#/definitions/SendNotiRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
@@ -1150,13 +1024,6 @@
             "schema": {
               "$ref": "#/definitions/SWDLoginRequest"
             }
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "required": true,
-            "type": "string",
-            "description": ""
           }
         ],
         "responses": {
