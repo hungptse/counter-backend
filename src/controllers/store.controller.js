@@ -61,7 +61,7 @@ async function createStore(req, res) {
             } else {
                 const result = store.get({ plain: true });
                 result["company_name"] = company.name;
-                res.status(201).send(messagesRes(200, "Store created", result));
+                res.status(201).send(messagesRes(201, "Store created", result));
             }
         });
     } else {

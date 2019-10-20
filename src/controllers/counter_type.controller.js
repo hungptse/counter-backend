@@ -37,7 +37,7 @@ async function createCounterType(req, res) {
             if (!isCreated) {
                 res.status(200).send(messagesRes(400, "Counter type already existed!"));
             } else {
-                res.status(200).send(messagesRes(200, "Counter type created!", counterType.get({ plain: true })))
+                res.status(200).send(messagesRes(201, "Counter type created!", counterType.get({ plain: true })))
             }
         })
     }
