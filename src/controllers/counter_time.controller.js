@@ -105,7 +105,7 @@ async function createCounterTime(req, res) {
          } else {
             res.status(200).send(
                messagesRes(
-                  200,
+                  201,
                   "Counter Time Created",
                   counterTime.get({ plain: true })
                )

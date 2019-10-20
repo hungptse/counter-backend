@@ -40,9 +40,9 @@ async function createCompany(req, res) {
             defaults: body
         }).then(([company, isCreate]) => {
             if (!isCreate) {
-                res.status(200).send(messagesRes(200, "Company already exist!"))
+                res.status(200).send(messagesRes(400, "Company already exist!"))
             } else {
-                res.status(200).send(messagesRes(200, "Company create!", company.get({ plain: true })));
+                res.status(200).send(messagesRes(201, "Company created!", company.get({ plain: true })));
             }
         });
     }

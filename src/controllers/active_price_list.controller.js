@@ -41,7 +41,7 @@ async function createActivePriceList(req, res) {
           if (!isCreated) {
              res.status(200).send(messagesRes(400, "Active price list already in app"));
           } else {
-             res.status(200).send(messagesRes(200, "Active price list created", activePriceList.get({ plain: true })));
+             res.status(200).send(messagesRes(201, "Active price list created", activePriceList.get({ plain: true })));
           }
        })
    }
