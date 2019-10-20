@@ -6,7 +6,7 @@
     "description": "",
     "contact": {}
   },
-  "host": "https://swd-backend.hangnoidiachauau.com",
+  "host": "swd-backend.hangnoidiachauau.com",
   "basePath": "/api",
   "securityDefinitions": {
     "bearerAuth": {
