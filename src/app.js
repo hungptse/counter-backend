@@ -13,35 +13,13 @@ import {
 } from "@middlewares/logging.middleware";
 import corsMiddleware from '@middlewares/cors.middleware';
 import Configuration from "@core/config";
-
+const swDoc = require("../swagger.json");
 const app = express();
 const server = require("http").Server(app);
 
-const swaggerDefinition = {
-    info: {
-        title: 'Counter Swagger API',
-        version: '1.0.0',
-        description: 'SWD',
-    },
-    host: 'localhost:3000',
-    basePath: '/',
-    securityDefinitions: {
-        bearerAuth: {
-            type: 'apiKey',
-            name: 'Authorization',
-            scheme: 'Bearer ',
-            in: 'header',
-        },
-    },
-};
-const options = {
-    swaggerDefinition,
-    apis: ['./routes/*.route.js'],
-};
-const swaggerSpec = swaggerJSDoc(options);
 app.get('/swagger.json', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
-    res.send(swaggerSpec);
+    res.send(swDoc);
 });
 async function main(app, server) {
     const PORT = Configuration.PORT;
@@ -69,7 +47,7 @@ async function main(app, server) {
         app.use(bodyParser.urlencoded({ extended: false }));
         app.use(bodyParser.json());
         app.use("/api", routes);
-        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+        app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swDoc));
         server.listen(PORT, () => console.log(`API running at http://${HOST}:${PORT}/api`));        
     } catch (error) {
         console.log(error);

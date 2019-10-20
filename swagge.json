@@ -1,0 +1,1939 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "SWD",
+    "description": "",
+    "contact": {}
+  },
+  "host": "https://swd-backend.hangnoidiachauau.com",
+  "basePath": "/api",
+  "securityDefinitions": {},
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/counter_time": {
+      "post": {
+        "description": "",
+        "summary": "Create Counter Time",
+        "tags": [
+          "SWD Counter Time"
+        ],
+        "operationId": "CounterTimePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateCounterTimeRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get All Counter Time",
+        "tags": [
+          "SWD Counter Time"
+        ],
+        "operationId": "CounterTimeGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/counter_type": {
+      "post": {
+        "description": "",
+        "summary": "Create Counter Type",
+        "tags": [
+          "SWD Counter Type"
+        ],
+        "operationId": "CounterTypePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateCounterTypeRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get All Counter Type",
+        "tags": [
+          "SWD Counter Type"
+        ],
+        "operationId": "CounterTypeGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/counter/store_type": {
+      "post": {
+        "description": "",
+        "summary": "Store and Type",
+        "tags": [
+          "SWD Counter"
+        ],
+        "operationId": "CounterStoreTypePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/StoreandTypeRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/counter": {
+      "post": {
+        "description": "",
+        "summary": "Create Counter",
+        "tags": [
+          "SWD Counter"
+        ],
+        "operationId": "CounterPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateCounterRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "summary": "Get All Counter",
+        "tags": [
+          "SWD Counter"
+        ],
+        "operationId": "CounterGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/active_price_list": {
+      "post": {
+        "description": "",
+        "summary": "Create Active Price List",
+        "tags": [
+          "SWD Active Price List"
+        ],
+        "operationId": "ActivePriceListPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateActivePriceListRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/active_price_list/active": {
+      "post": {
+        "description": "",
+        "summary": "Get Active Price List for Store",
+        "tags": [
+          "SWD Active Price List"
+        ],
+        "operationId": "ActivePriceListActivePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetActivePriceListforStoreRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user_store/": {
+      "get": {
+        "description": "",
+        "summary": "Get User Store by User",
+        "tags": [
+          "SWD User Store"
+        ],
+        "operationId": "UserStoreGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user_store": {
+      "post": {
+        "description": "",
+        "summary": "Create User Store",
+        "tags": [
+          "SWD User Store"
+        ],
+        "operationId": "UserStorePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateUserStoreRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/price_list": {
+      "get": {
+        "description": "",
+        "summary": "Get All Price List",
+        "tags": [
+          "SWD Price List"
+        ],
+        "operationId": "PriceListGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Create Price List",
+        "tags": [
+          "SWD Price List"
+        ],
+        "operationId": "PriceListPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatePriceListRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/price_list/1": {
+      "get": {
+        "description": "",
+        "summary": "Get Price List by ID",
+        "tags": [
+          "SWD Price List"
+        ],
+        "operationId": "PriceList1Get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/price_detail": {
+      "post": {
+        "description": "",
+        "summary": "Create Price Detail",
+        "tags": [
+          "SWD Price Detail"
+        ],
+        "operationId": "PriceDetailPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreatePriceDetailRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/price_detail/detail": {
+      "post": {
+        "description": "",
+        "summary": "Get A Price Detail",
+        "tags": [
+          "SWD Price Detail"
+        ],
+        "operationId": "PriceDetailDetailPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetAPriceDetailRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "description": "",
+        "summary": "Get User by Username",
+        "tags": [
+          "SWD User"
+        ],
+        "operationId": "UserPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetUserbyUsernameRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/user/profile": {
+      "get": {
+        "description": "",
+        "summary": "Get User Info",
+        "tags": [
+          "SWD User"
+        ],
+        "operationId": "UserProfileGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/auth/password": {
+      "put": {
+        "description": "",
+        "summary": "Change Password",
+        "tags": [
+          "SWD User"
+        ],
+        "operationId": "AuthPasswordPut",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/role": {
+      "get": {
+        "description": "",
+        "summary": "Get All Role",
+        "tags": [
+          "SWD Role"
+        ],
+        "operationId": "RoleGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Create Role",
+        "tags": [
+          "SWD Role"
+        ],
+        "operationId": "RolePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateRoleRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/permission": {
+      "get": {
+        "description": "",
+        "summary": "Get All Permission",
+        "tags": [
+          "SWD Role"
+        ],
+        "operationId": "PermissionGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/invoice/current": {
+      "post": {
+        "description": "",
+        "summary": "Get Last Invoice Of Store",
+        "tags": [
+          "SWD Invoice"
+        ],
+        "operationId": "InvoiceCurrentPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/GetLastInvoiceOfStoreRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/invoice/1": {
+      "get": {
+        "description": "",
+        "summary": "Get an Invoice",
+        "tags": [
+          "SWD Invoice"
+        ],
+        "operationId": "Invoice1Get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/invoice": {
+      "get": {
+        "description": "",
+        "summary": "Get All Invoice",
+        "tags": [
+          "SWD Invoice"
+        ],
+        "operationId": "InvoiceGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Create Invoice",
+        "tags": [
+          "SWD Invoice"
+        ],
+        "operationId": "InvoicePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateInvoiceRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/store": {
+      "get": {
+        "description": "",
+        "summary": "Get All Store",
+        "tags": [
+          "SWD Store"
+        ],
+        "operationId": "StoreGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Create Store",
+        "tags": [
+          "SWD Store"
+        ],
+        "operationId": "StorePost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateStoreRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/store/2": {
+      "get": {
+        "description": "",
+        "summary": "Get Store by ID",
+        "tags": [
+          "SWD Store"
+        ],
+        "operationId": "Store2Get",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/store/1": {
+      "delete": {
+        "description": "",
+        "summary": "Delete Store by ID",
+        "tags": [
+          "SWD Store"
+        ],
+        "operationId": "Store1Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/5d94e613e279513f852343d2": {
+      "post": {
+        "description": "",
+        "summary": "Deploy Front-end",
+        "tags": [
+          "SWD Server"
+        ],
+        "operationId": "5d94e613e279513f852343d2Post",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/notification": {
+      "put": {
+        "description": "",
+        "summary": "Set DeviceID",
+        "tags": [
+          "SWD Server"
+        ],
+        "operationId": "NotificationPut",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetDeviceIDRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "summary": "Send Noti",
+        "tags": [
+          "SWD Server"
+        ],
+        "operationId": "NotificationPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendNotiRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "",
+        "summary": "Check Health",
+        "tags": [
+          "SWD Server"
+        ],
+        "operationId": "UnnammedEndpointGet",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "",
+        "summary": "SWD Login",
+        "operationId": "AuthLoginPost",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SWDLoginRequest"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "object"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateCounterTimeRequest": {
+      "title": "CreateCounterTimeRequest",
+      "example": {
+        "counter_id": 1,
+        "value": 333,
+        "created_by": "hungpt"
+      },
+      "type": "object",
+      "properties": {
+        "counter_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "counter_id",
+        "value",
+        "created_by"
+      ]
+    },
+    "CreateCounterTypeRequest": {
+      "title": "CreateCounterTypeRequest",
+      "example": {
+        "name": "Water"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "StoreandTypeRequest": {
+      "title": "StoreandTypeRequest",
+      "example": {
+        "store_id": 4,
+        "type_id": 2
+      },
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "store_id",
+        "type_id"
+      ]
+    },
+    "CreateCounterRequest": {
+      "title": "CreateCounterRequest",
+      "example": {
+        "name": "Counter 22",
+        "brand": "Daikin",
+        "type_id": 2,
+        "store_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "type_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "name",
+        "brand",
+        "type_id",
+        "store_id"
+      ]
+    },
+    "CreateActivePriceListRequest": {
+      "title": "CreateActivePriceListRequest",
+      "example": {
+        "plist_id": 4,
+        "store_id": 4,
+        "is_active": true
+      },
+      "type": "object",
+      "properties": {
+        "plist_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_active": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "plist_id",
+        "store_id",
+        "is_active"
+      ]
+    },
+    "GetActivePriceListforStoreRequest": {
+      "title": "GetActivePriceListforStoreRequest",
+      "example": {
+        "store_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "store_id"
+      ]
+    },
+    "CreateUserStoreRequest": {
+      "title": "CreateUserStoreRequest",
+      "example": {
+        "store_id": 1,
+        "user_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "store_id",
+        "user_id"
+      ]
+    },
+    "CreatePriceListRequest": {
+      "title": "CreatePriceListRequest",
+      "example": {
+        "name": "Bang dien nuoc thang 9"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "CreatePriceDetailRequest": {
+      "title": "CreatePriceDetailRequest",
+      "example": {
+        "plist_id": 4,
+        "type_id": 2,
+        "data": [
+          {
+            "voltage_level": 1,
+            "time_type": "BT",
+            "price": 26600
+          },
+          {
+            "voltage_level": 1,
+            "time_type": "TD",
+            "price": 26600
+          },
+          {
+            "voltage_level": 1,
+            "time_type": "CD",
+            "price": 26600
+          },
+          {
+            "voltage_level": 2,
+            "time_type": "BT",
+            "price": 26600
+          },
+          {
+            "voltage_level": 2,
+            "time_type": "TD",
+            "price": 26600
+          },
+          {
+            "voltage_level": 2,
+            "time_type": "CD",
+            "price": 26600
+          },
+          {
+            "voltage_level": 3,
+            "time_type": "BT",
+            "price": 26600
+          },
+          {
+            "voltage_level": 3,
+            "time_type": "TD",
+            "price": 26600
+          },
+          {
+            "voltage_level": 3,
+            "time_type": "CD",
+            "price": 26600
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "plist_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "plist_id",
+        "type_id",
+        "data"
+      ]
+    },
+    "GetAPriceDetailRequest": {
+      "title": "GetAPriceDetailRequest",
+      "example": {
+        "plist_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "plist_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "plist_id"
+      ]
+    },
+    "GetUserbyUsernameRequest": {
+      "title": "GetUserbyUsernameRequest",
+      "example": {
+        "username": "thanglt"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username"
+      ]
+    },
+    "ChangePasswordRequest": {
+      "title": "ChangePasswordRequest",
+      "example": {
+        "old_password": "123",
+        "new_password": "111",
+        "retype_password": "111"
+      },
+      "type": "object",
+      "properties": {
+        "old_password": {
+          "type": "string"
+        },
+        "new_password": {
+          "type": "string"
+        },
+        "retype_password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "old_password",
+        "new_password",
+        "retype_password"
+      ]
+    },
+    "CreateRoleRequest": {
+      "title": "CreateRoleRequest",
+      "example": {
+        "name": "AAA",
+        "permissions": [
+          "AA"
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "name",
+        "permissions"
+      ]
+    },
+    "GetLastInvoiceOfStoreRequest": {
+      "title": "GetLastInvoiceOfStoreRequest",
+      "example": {
+        "store_id": 1
+      },
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "store_id"
+      ]
+    },
+    "CreateInvoiceRequest": {
+      "title": "CreateInvoiceRequest",
+      "example": {
+        "store_id": 4,
+        "type_id": 1,
+        "price": 8357000
+      },
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "store_id",
+        "type_id",
+        "price"
+      ]
+    },
+    "CreateStoreRequest": {
+      "title": "CreateStoreRequest",
+      "example": {
+        "name": "NamNNB",
+        "address": "HCM",
+        "company_id": 1,
+        "city": "DN"
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "company_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "city": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "address",
+        "company_id",
+        "city"
+      ]
+    },
+    "SetDeviceIDRequest": {
+      "title": "SetDeviceIDRequest",
+      "example": {
+        "device_id": "DoLIxFGE0iRBNPpm7p0jD8"
+      },
+      "type": "object",
+      "properties": {
+        "device_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "device_id"
+      ]
+    },
+    "SendNotiRequest": {
+      "title": "SendNotiRequest",
+      "example": {
+        "message": "SWD Testing Notification"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "SWDLoginRequest": {
+      "title": "SWDLoginRequest",
+      "example": {
+        "username": "1",
+        "password": "1"
+      },
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username",
+        "password"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "SWD Counter Time",
+      "description": ""
+    },
+    {
+      "name": "SWD Counter Type",
+      "description": ""
+    },
+    {
+      "name": "SWD Counter",
+      "description": ""
+    },
+    {
+      "name": "SWD Active Price List",
+      "description": ""
+    },
+    {
+      "name": "SWD User Store",
+      "description": ""
+    },
+    {
+      "name": "SWD Price List",
+      "description": ""
+    },
+    {
+      "name": "SWD Price Detail",
+      "description": ""
+    },
+    {
+      "name": "SWD User",
+      "description": ""
+    },
+    {
+      "name": "SWD Role",
+      "description": ""
+    },
+    {
+      "name": "SWD Invoice",
+      "description": ""
+    },
+    {
+      "name": "SWD Store",
+      "description": ""
+    },
+    {
+      "name": "SWD Server",
+      "description": ""
+    }
+  ]
+}
